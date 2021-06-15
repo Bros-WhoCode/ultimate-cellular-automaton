@@ -1,0 +1,73 @@
+.rulecomp-container{
+    margin-bottom: 10px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.7);
+    border-radius: 20px;
+
+}
+
+.rulecomp-wrapper{
+    display: flex;
+    padding: 10px;
+    background: whitesmoke;
+    border-radius: 20px;
+    justify-content: center;
+}
+
+.rulecomp-content{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.rulecomp-checkbox{
+    display: flex;
+    align-items: center;
+}
+
+.rulecomp-checkbox input{
+    margin: 10px 5px 10px 10px;
+}
+
+.rulecomp-checkbox label{
+    margin: 0 20px 0 0;
+}
+
+.rulecomp-delete-icon{
+    width: fit-content;
+    height: fit-content;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.rulecomp-delete-icon:hover {
+    color: red;
+}
+
+.rulegrid-container{
+    width: fit-content;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rulegrid-wrapper{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.rulecell{
+    width: 25px;
+    height: 25px;
+    margin: 2px;
+}
+
+.rulecell.true{
+    background: black;
+    border: .5px dotted rgba(255, 255, 255, .7);
+}
+
+.rulecell.false{
+    background: white;
+    border: .5px dotted rgba(0,0,0,.7);
+}

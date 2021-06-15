@@ -1,0 +1,71 @@
+.input-container{
+    width: max(20vw, 300px);
+    height: 90vh;
+    /* background: brown;    */
+    filter: drop-shadow( 5px 5px 10px rgba(0,0,0,.7));
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    background: white;
+}
+
+.input-container h2{
+    left: 20px;
+    top: -20px;
+    height: fit-content;
+    position: relative;
+    background: white;
+    width: fit-content;
+    padding: 5px 20px;
+    font-size: 30px;
+    /* border: 1px dotted rgba(0,0,0,.5); */
+    /* box-shadow: 2px 2px 5px rgba(0, 0, 0, .7); */
+    border-radius: 30px;
+
+
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.input-wrapper{
+    background: white;
+    /* background: chartreuse; */
+    flex: 1;
+    padding: 0px 20px 10px 20px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    overflow-y: auto; 
+}
+
+.input-footer{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-add-icon{
+    font-size: 30px;
+    font-weight: bold;
+    width: fit-content;
+    height: fit-content;
+}
+
+.input-add-icon:hover{
+    color: cyan;
+}
