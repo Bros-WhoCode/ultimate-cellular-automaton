@@ -1,9 +1,16 @@
 import '../styles/App.css';
-
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 function App() {
   return (
+    
     <div className="app">
-      <h1>Ultimate Cellular Automaton</h1>
+      <Router>
+        <Switch>
+          <Route path="/home">
+            
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
