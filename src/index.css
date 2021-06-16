@@ -14,4 +14,5 @@ body{
   overflow-x: hidden;
   width: 100vw;
   height: 100vh;
+  padding: 40px;
 }
