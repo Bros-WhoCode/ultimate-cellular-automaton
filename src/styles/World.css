@@ -1,0 +1,10 @@
+.world-container {
+    width: 80vw;
+    height: 100vh;
+}
+
+.world-cell-row {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+}
