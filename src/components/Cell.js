@@ -2,31 +2,56 @@ import React, { useEffect, useState } from 'react';
 
 import '../styles/Cell.css';
 
-// export const Cell = (i, j, state) => {
-//     return {
-//         i, j, state
-//     }
-// }
+export class Cell {
 
-export const CellComponent = () => {
+    constructor(i, j, state){
+        this.i = i;
+        this.j = j;
+        this.state = state;
+    }
 
-    const [isAlive, setIsAlive] = useState(false);
+}
 
-    const [style, setStyle] = useState({
-        backgroundColor : 'white'
+
+export const CellComponent = ({cell, setWorldState}) => {
+
+    const [styles, setStyles] = useState({
+        'backgroundColor' : 'white'
     });
 
+    const [isAlive, setIsAlive] = useState(cell.state);
+
+    const bringAlive = (e) => {
+        e.preventDefault();
+        setWorldState(worldState => {
+            cell.state = !cell.state;
+            return worldState;
+        });
+
+        setIsAlive(cell.state);
+    }
+
     useEffect(() => {
+
         if(isAlive){
-            setStyle({
-                backgroundColor : 'black',
-            })
+            setStyles({
+                'backgroundColor' : 'black'
+            });
+        }else{
+            setStyles({
+                'backgroundColor' : 'white'
+            });
         }
-    }, []);
+
+    }, [isAlive]);
 
     return (
-        <div className="cell-container" style={style}></div>
+        <div 
+            onClick={bringAlive}
+            className="cell-container" style={styles}
+        ></div>
     );
+
 }
 
 export default {CellComponent, Cell};

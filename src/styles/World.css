@@ -1,6 +1,7 @@
 .world-container {
     width: 80vw;
     height: 100vh;
+    user-select: none;
 }
 
 .world-cell-row {

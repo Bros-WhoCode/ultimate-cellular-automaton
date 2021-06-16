@@ -5,19 +5,6 @@ import '../styles/World.css';
 import {Cell, CellComponent} from './Cell';
 
 
-const RenderWorld = ({worldState}) => {
-    return(
-        <>
-            {worldState.map((cellRow, i) => (
-                    <div className="world-cell-row" key={i}>
-                        {cellRow.map((cell, j) => <CellComponent key={j} cell={cell}></CellComponent>)}
-                    </div>
-            ))}
-        </>
-    );
-}
-
-
 export const WorldComponent = ({rows, cols, rowHeight, colWidth}) => {
 
     const InitialWorld = () => {
@@ -29,7 +16,7 @@ export const WorldComponent = ({rows, cols, rowHeight, colWidth}) => {
 
         for(let i = 0; i < rows; i++){
             for(let j = 0; j < cols; j++){
-                cells[i][j] = Cell(i, j, false);
+                cells[i][j] = new Cell(i, j, false);
             }
         }
 
@@ -41,13 +28,16 @@ export const WorldComponent = ({rows, cols, rowHeight, colWidth}) => {
         return cells;
     }
 
-
     const [worldState, setWorldState] = useState(InitialWorld());
-
 
     return (
         <div className="world-container">
-            <RenderWorld worldState={worldState}></RenderWorld>
+            {worldState.map((cellRow, i) => (
+                    <div className="world-cell-row" key={i}>
+                        {cellRow.map((cell, j) => <CellComponent key={j} cell={cell} worldState={worldState} setWorldState={setWorldState}/>)}
+                    </div>
+            ))}
+            <button onClick={(e) => {console.log(worldState);}}>Submit</button>
         </div>
     );
 }

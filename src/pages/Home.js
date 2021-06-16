@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <div className="home-container">
             <div className="home-wrapper">
-                <WorldComponent rows={20} cols={30}></WorldComponent>
+                <WorldComponent rows={30} cols={30}></WorldComponent>
             </div>
         </div>
     )

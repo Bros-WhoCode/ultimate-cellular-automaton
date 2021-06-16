@@ -1,6 +1,7 @@
 .cell-container {
     height: 2vw;
     width: 2vw;
-    margin: 0.2vw;
-    border-radius: 50%;
+    margin: 0.1vw;
+    border-radius: 0.2vw;
+    border : 1px solid black;
 }
