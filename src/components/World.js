@@ -4,31 +4,34 @@ import '../styles/World.css';
 
 import {Cell, CellComponent} from './Cell';
 
+import {states, stateDict} from './States';
 
 export const WorldComponent = ({rows, cols, rowHeight, colWidth}) => {
 
-    const InitialWorld = () => {
-
-        const cells = new Array(rows);
-        for(let i = 0; i < rows; i++){
-            cells[i] = new Array(cols);
-        }
-
-        for(let i = 0; i < rows; i++){
-            for(let j = 0; j < cols; j++){
-                cells[i][j] = new Cell(i, j, false);
-            }
-        }
-
-        cells[0][0].state = true;
-        cells[0][cols-1].state = true;
-        cells[rows-1][0].state = true;
-        cells[rows-1][cols-1].state = true;
-
-        return cells;
+    const [initalState, setInitalState] = useState(0);
+    
+    const InitWorld = (rows, cols) => {
+        return stateDict[states[initalState]](rows, cols);
     }
 
-    const [worldState, setWorldState] = useState(InitialWorld());
+    const [worldState, setWorldState] = useState(InitWorld(rows, cols));
+    
+    const nextState = () => {
+        let newIndex = initalState + 1;
+        if(newIndex >= states.length){
+            newIndex = 0
+        }
+        return newIndex;
+    }
+
+    const changeState = (e) => {
+        setInitalState(nextState());
+    }
+
+    useEffect(() => {
+        setWorldState(InitWorld(rows, cols));
+    }, [initalState])
+
 
     return (
         <div className="world-container">
@@ -37,9 +40,10 @@ export const WorldComponent = ({rows, cols, rowHeight, colWidth}) => {
                         {cellRow.map((cell, j) => <CellComponent key={j} cell={cell} worldState={worldState} setWorldState={setWorldState}/>)}
                     </div>
             ))}
-            <button onClick={(e) => {console.log(worldState);}}>Submit</button>
+            <button onClick={changeState}>{states[initalState]}</button>
         </div>
     );
 }
 
 // export default ;
+
