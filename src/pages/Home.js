@@ -1,19 +1,28 @@
-import React, {useState} from 'react'
-import { useParams } from 'react-router-dom';
+import React, {createContext, useState, useReducer} from 'react';
+// import {WorldComponent} from '../components/World';
 
-import {WorldComponent} from '../components/World';
+import World from '../components/World';
+import { worldReducer, InitialState } from '../components/Reducers/WorldReducer';
 
 import '../styles/Home.css';
 
-const Home = () => {
+export const worldContext = createContext();
+
+export const Home = () => {
+
+    const rows = 20;
+    const cols = 30;
 
     return (
-        <div className="home-container">
-            <div className="home-wrapper">
-                <WorldComponent rows={20} cols={30}></WorldComponent>
+        <worldContext.Provider value={useReducer(worldReducer, {rows : rows, cols : cols}, InitialState)}>
+            <div className="home-container">
+                <div className="home-wrapper">
+                    {/* <World rows={rows} cols={cols}></World> */}
+                    <World></World>
+                </div>
             </div>
-        </div>
+        </worldContext.Provider>
     )
 }
 
-export default Home
+// export default Home

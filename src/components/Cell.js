@@ -1,56 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+
+import { worldContext } from '../pages/Home';
 
 import '../styles/Cell.css';
 
-export class Cell {
-
-    constructor(i, j, state, rows, cols){
-        this.i = i;
-        this.j = j;
-        this.state = state;
-        this.rows = rows;
-        this.cols = cols;
-    }
-
-    isValid(i, j){
-        return (i >= 0 && i < this.rows) && (j >= 0 && j < this.cols)
-    }
-
-    getNeighbors(){
-        let neighbors = [];
-        for(let i = this.i - 1; i < this.i + 2; i++){
-            for(let j = this.j - 1; j < this.j + 2; j++){
-                if(this.isValid(i, j)){
-                    neighbors.push({i , j});
-                }else{
-                    neighbors.push({i : -1, j : -1});
-                }
-            }
-        }
-        return neighbors;
-    }
-
-}
-
-
-export const CellComponent = ({worldState, cell, setWorldState}) => {
+const Cell = ({i, j}) => {
 
     const [styles, setStyles] = useState({
         'backgroundColor' : 'white',
     });
 
-    const [isAlive, setIsAlive] = useState(cell.state);
+    const [world, dispatch] = useContext(worldContext);
+    const [isAlive, setIsAlive] = useState(world.cells[i][j]);
 
-    const bringAlive = (e) => {
-        e.preventDefault();
-        
-        setWorldState(worldState => {
-            cell.state = !cell.state;
-            return worldState;
-        });
-        console.log(worldState);
+    const toggleLife = (e) => {
 
-        setIsAlive(cell.state);
+        if(world.currentState == 0){
+
+            if(!isAlive){
+                dispatch({data : {i, j}, type : "TOGGLE_ON"});
+            }else{
+                dispatch({data : {i, j}, type : "TOGGLE_OFF"});
+            }
+
+        }
+
+        console.log("Cell Clicked");
+
     }
 
     useEffect(() => {
@@ -68,16 +44,13 @@ export const CellComponent = ({worldState, cell, setWorldState}) => {
     }, [isAlive]);
 
     useEffect(() => {
-        setIsAlive(cell.state);
-    }, [worldState])
+        setIsAlive(world.cells[i][j]);
+    }, [world]);
 
     return (
-        <div 
-            onClick={bringAlive}
-            className="cell-container" style={styles}
-        ></div>
+        <div onClick={toggleLife} style={styles} className="cell-container"></div>
     );
 
 }
 
-export default {CellComponent, Cell};
+export default Cell;
