@@ -8,6 +8,7 @@ class State {
             this.rows = rows;
             this.cols = cols;
             this.history = [];
+            this.neighbors = {};
 
             this.cells = new Array(rows);
 
@@ -16,8 +17,30 @@ class State {
             }
 
             for(let i = 0; i < rows; i++){
+                this.neighbors[i] = {};
                 for(let j = 0; j < cols; j++){
                     this.cells[i][j] = false;
+
+                    this.neighbors[i][j] = [];
+                    for (let k = -1; k < 2; k++) {
+                        for (let l = -1; l < 2; l++) {
+                            let row = (k + i + rows) % rows;
+                            let col = (l + j + cols) % cols;
+                            this.neighbors[i][j].push({x : row, y : col});
+                        }
+                    }
+                    // this.neighbors[i * rows + j] = [
+                    //     {x : i - 1, y : j - 1},
+                    //     {x : i - 1, y : j},
+                    //     {x : i - 1, y : j + 1},
+                    //     {x : i, y : j - 1},
+                    //     // {x : i, y : j},
+                    //     {x : i, y : j + 1},
+                    //     {x : i + 1, y : j - 1},
+                    //     {x : i + 1, y : j},
+                    //     {x : i + 1, y : j + 1},
+                    // ];
+                    // console.log("Creating Neighbors!!");
                 }
             }
 
@@ -28,9 +51,23 @@ class State {
             this.cells = prevState.cells;
             this.history = prevState.history;
             this.currentState = prevState.currentState;
+            this.neighbors = prevState.neighbors;
 
         }
 
+    }
+
+
+    check(i, j){
+        return i >= 0 && i < this.rows && j >= 0 && j < this.cols;
+    }
+
+    make2DArray() {
+        let arr = new Array(this.rows);
+        for (let i = 0; i < this.rows; i++) {
+            arr[i] = new Array(this.cols);
+        }
+        return arr;
     }
 
 }
@@ -111,6 +148,44 @@ export const worldReducer = (state, action) => {
 
         state.currentState = newIndex;
         StateDict[StateNames[state.currentState]](state);
+
+    }else if(action.type == "CLEAR"){
+        
+        for(let i = 0; i < state.rows; i++){
+            for(let j = 0; j < state.cols; j++){
+                state.cells[i][j] = false;
+            }
+        }
+
+    }else if(action.type == "SIMULATING"){
+
+        let next = state.make2DArray();
+
+        for(let i = 0; i < state.rows; i++){
+            for(let j = 0; j < state.cols; j++){
+
+                let neighs = state.neighbors[i][j];
+                let alive_neighs = 0;
+
+                for(let k = 0; k < 9; k++){
+                    if(state.cells[neighs[k].x][neighs[k].y]) alive_neighs += 1;
+                }
+
+                if(state.cells[i][j]){
+                    alive_neighs -= 1;
+                }
+
+                if(state.cells[i][j] === false && alive_neighs === 3){
+                    next[i][j] = true;
+                }else if(state.cells[i][j] === true && (alive_neighs < 2 || alive_neighs > 3)){
+                    next[i][j] = false;
+                }else{
+                    next[i][j] = state.cells[i][j];
+                }
+            }
+        }
+
+        state.cells = next;
 
     }
 

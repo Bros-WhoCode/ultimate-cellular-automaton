@@ -15,7 +15,7 @@ const Cell = ({i, j}) => {
 
     const toggleLife = (e) => {
 
-        if(world.currentState == 0){
+        if(world.currentState === 0){
 
             if(!isAlive){
                 dispatch({data : {i, j}, type : "TOGGLE_ON"});
