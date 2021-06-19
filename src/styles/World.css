@@ -1,6 +1,5 @@
 .world-container {
     width: 80vw;
-    height: 100%;
     overflow: hidden;
 }
 
@@ -8,4 +7,14 @@
     display: flex;
     width: 100%;
     height: fit-content;
+}
+
+.world-btn{
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    border-radius: 20px;
+    box-shadow: 7px 7px 10px rgba(0,0,0,.7);
+    background: whitesmoke;
 }

@@ -48,7 +48,7 @@ const Cell = ({i, j}) => {
     }, [world]);
 
     return (
-        <div onClick={toggleLife} style={styles} className="cell-container"></div>
+        <div onClick={() => toggleLife()} style={styles} className="cell-container"></div>
     );
 
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/Input.css'
-import {RuleComp} from '../components/RuleComp'
+import {RuleComp} from './RuleComp'
 
 const Input = () => {
 
