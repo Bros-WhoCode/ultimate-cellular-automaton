@@ -11,7 +11,7 @@ const App = () => {
           <Route path='/input'>
             <Input/>
           </Route>
-          <Route exact path='/'>
+          <Route path='/'>
             <Home/>
           </Route>
         </Switch>
