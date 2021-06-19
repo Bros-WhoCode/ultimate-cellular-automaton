@@ -7,7 +7,6 @@ class State {
             this.currentState = 0;
             this.rows = rows;
             this.cols = cols;
-            this.history = [];
             this.neighbors = {};
 
             this.cells = new Array(rows);
@@ -29,18 +28,6 @@ class State {
                             this.neighbors[i][j].push({x : row, y : col});
                         }
                     }
-                    // this.neighbors[i * rows + j] = [
-                    //     {x : i - 1, y : j - 1},
-                    //     {x : i - 1, y : j},
-                    //     {x : i - 1, y : j + 1},
-                    //     {x : i, y : j - 1},
-                    //     // {x : i, y : j},
-                    //     {x : i, y : j + 1},
-                    //     {x : i + 1, y : j - 1},
-                    //     {x : i + 1, y : j},
-                    //     {x : i + 1, y : j + 1},
-                    // ];
-                    // console.log("Creating Neighbors!!");
                 }
             }
 
@@ -49,7 +36,6 @@ class State {
             this.rows = prevState.rows;
             this.cols = prevState.cols;
             this.cells = prevState.cells;
-            this.history = prevState.history;
             this.currentState = prevState.currentState;
             this.neighbors = prevState.neighbors;
 
@@ -95,6 +81,26 @@ export const BoxBorder = (state) => {
 
 }
 
+export const Random = (state) => {
+
+    for(let i = 0; i < state.rows; i++){
+        for(let j = 0; j < state.cols; j++){
+            state.cells[i][j] = false;
+        }
+    }
+
+    for(let i = 0; i < state.rows; i++){
+        for(let j = 0; j < state.cols; j++){
+            if(Math.random() > 0.7){
+                state.cells[i][j] = true;
+            }else{
+                state.cells[i][j] = false;
+            }
+        }
+    }
+
+}
+
 
 export const WhiteSpace = (state) => {
 
@@ -104,37 +110,26 @@ export const WhiteSpace = (state) => {
         }
     }
 
-    for(let his of state.history){
-        state.cells[his.i][his.j] = true;
-    }
-
 }
 
 export const InitialState = ({rows, cols}) => {
     return new State(null, rows, cols);
 }
 
-const StateDict = {WhiteSpace, BoxBorder};
+const StateDict = {WhiteSpace, BoxBorder, Random};
 let StateNames = [];
 for(let k in StateDict) StateNames.push(k);
+
+
+
 
 export const worldReducer = (state, action) => {
 
     if(action.type === "TOGGLE_ON"){
 
-        state.history.push({i : action.data.i , j : action.data.j});
         state.cells[action.data.i][action.data.j] = true;
 
     }else if(action.type === "TOGGLE_OFF"){
-
-        let i;
-        for(i = 0; i < state.history.length; i++){
-            if(state.history[i].i === action.data.i && state.history[i].j === action.data.j){
-                break;
-            }
-        }
-
-        if(i !== state.history.length) state.history.splice(i, 1);
 
         state.cells[action.data.i][action.data.j] = false;
         

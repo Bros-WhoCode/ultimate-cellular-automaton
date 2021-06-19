@@ -11,7 +11,7 @@ export const worldContext = createContext();
 export const Home = () => {
 
     const rows = 30;
-    const cols = 60;
+    const cols = 80;
 
     return (
         <worldContext.Provider value={useReducer(worldReducer, {rows : rows, cols : cols}, InitialState)}>
