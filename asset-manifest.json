@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ultimate-cellular-automaton/static/css/main.4bf103fd.chunk.css",
+    "main.js": "/ultimate-cellular-automaton/static/js/main.1c96c1ac.chunk.js",
+    "main.js.map": "/ultimate-cellular-automaton/static/js/main.1c96c1ac.chunk.js.map",
+    "runtime-main.js": "/ultimate-cellular-automaton/static/js/runtime-main.58ae860a.js",
+    "runtime-main.js.map": "/ultimate-cellular-automaton/static/js/runtime-main.58ae860a.js.map",
+    "static/js/2.559e1d9a.chunk.js": "/ultimate-cellular-automaton/static/js/2.559e1d9a.chunk.js",
+    "static/js/2.559e1d9a.chunk.js.map": "/ultimate-cellular-automaton/static/js/2.559e1d9a.chunk.js.map",
+    "static/js/3.ef38f041.chunk.js": "/ultimate-cellular-automaton/static/js/3.ef38f041.chunk.js",
+    "static/js/3.ef38f041.chunk.js.map": "/ultimate-cellular-automaton/static/js/3.ef38f041.chunk.js.map",
+    "index.html": "/ultimate-cellular-automaton/index.html",
+    "static/css/main.4bf103fd.chunk.css.map": "/ultimate-cellular-automaton/static/css/main.4bf103fd.chunk.css.map",
+    "static/js/2.559e1d9a.chunk.js.LICENSE.txt": "/ultimate-cellular-automaton/static/js/2.559e1d9a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.58ae860a.js",
+    "static/js/2.559e1d9a.chunk.js",
+    "static/css/main.4bf103fd.chunk.css",
+    "static/js/main.1c96c1ac.chunk.js"
+  ]
+}
