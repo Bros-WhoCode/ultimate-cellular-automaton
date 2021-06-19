@@ -1,5 +1,4 @@
-import React, {createContext, useContext, useReducer, useState} from 'react';
-
+import React, {useContext, useState} from 'react';
 import CellRow from './CellRow';
 import { worldContext } from '../pages/Home';
 

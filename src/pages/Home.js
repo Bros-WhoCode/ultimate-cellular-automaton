@@ -1,7 +1,7 @@
-import React, {createContext, useState, useReducer} from 'react';
+import React, {createContext, useReducer} from 'react';
 // import {WorldComponent} from '../components/World';
 
-import World from '../components/World';
+import World from '../components/World'; 
 import { worldReducer, InitialState } from '../components/Reducers/WorldReducer';
 
 import '../styles/Home.css';

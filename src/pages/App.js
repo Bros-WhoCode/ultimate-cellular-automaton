@@ -9,10 +9,13 @@ const App = () => {
       <Router>
         <Switch>
           <Route path='/input'>
-            <Input/>
+            
           </Route>
           <Route exact path='/'>
-            <Home/>
+            <div className="cellauto-container">
+              <Home/>
+              <Input/>
+            </div>
           </Route>
         </Switch>
       </Router>

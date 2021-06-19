@@ -120,12 +120,12 @@ for(let k in StateDict) StateNames.push(k);
 
 export const worldReducer = (state, action) => {
 
-    if(action.type == "TOGGLE_ON"){
+    if(action.type === "TOGGLE_ON"){
 
         state.history.push({i : action.data.i , j : action.data.j});
         state.cells[action.data.i][action.data.j] = true;
 
-    }else if(action.type == "TOGGLE_OFF"){
+    }else if(action.type === "TOGGLE_OFF"){
 
         let i;
         for(i = 0; i < state.history.length; i++){
@@ -134,11 +134,11 @@ export const worldReducer = (state, action) => {
             }
         }
 
-        if(i != state.history.length) state.history.splice(i, 1);
+        if(i !== state.history.length) state.history.splice(i, 1);
 
         state.cells[action.data.i][action.data.j] = false;
         
-    }else if(action.type == "CHANGE_STATE"){
+    }else if(action.type === "CHANGE_STATE"){
 
         let newIndex = state.currentState + 1;
 
@@ -149,7 +149,7 @@ export const worldReducer = (state, action) => {
         state.currentState = newIndex;
         StateDict[StateNames[state.currentState]](state);
 
-    }else if(action.type == "CLEAR"){
+    }else if(action.type === "CLEAR"){
         
         for(let i = 0; i < state.rows; i++){
             for(let j = 0; j < state.cols; j++){
@@ -157,7 +157,7 @@ export const worldReducer = (state, action) => {
             }
         }
 
-    }else if(action.type == "SIMULATING"){
+    }else if(action.type === "SIMULATING"){
 
         let next = state.make2DArray();
 

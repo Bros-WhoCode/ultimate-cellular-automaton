@@ -2,3 +2,7 @@
     height: inherit;
     width: inherit;
 } */
+
+.cellauto-container{
+    display: flex;
+}
