@@ -1,23 +1,24 @@
 import React, {useContext, useState} from 'react';
 import CellRow from './CellRow';
-import { worldContext } from '../pages/Home';
+import { ruleSetContext, worldContext } from '../pages/Home';
 
 import '../styles/World.css';
 
 
 export const World = () => {
 
+    const [ruleSet, ] = useContext(ruleSetContext)
     const [world, dispatch] = useContext(worldContext);
 
     const [simulation, setSimulation] = useState(null);
     const [simText, setSimText] = useState('Play');
     
     const clear = () => {
-        dispatch({type : 'CLEAR'});
+        dispatch({type : 'CLEAR', value: null});
     }
 
     const simulate = () => {
-        dispatch({type : 'SIMULATING'});
+        dispatch({type : 'SIMULATING', value: ruleSet});
     }
 
     const toggleSimulation = (e) => {
