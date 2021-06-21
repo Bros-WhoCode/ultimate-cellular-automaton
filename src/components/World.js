@@ -20,15 +20,13 @@ export const World = () => {
         dispatch({type : 'SIMULATING'});
     }
 
-    const toggleSimulation = (e) => {
+    const toggleSimulation = () => {
         if(simulation){
             clearInterval(simulation);
             setSimulation(null);
-            console.log("OFF");
             setSimText('Play');
         }else{
             setSimulation(setInterval(simulate, 50));
-            console.log("ON");
             setSimText('Pause');
         }
     }
@@ -38,10 +36,10 @@ export const World = () => {
             {
                 world.cells.map((row, i) => <CellRow i={i} key={i} row={row}></CellRow>)
             }
-            <button className="world-btn" onClick={() => toggleSimulation()}>{simText}</button>
+            <button className="world-btn" onClick={(e) => toggleSimulation()}>{simText}</button>
             <button className="world-btn" onClick={(e) => dispatch({type : 'CHANGE_STATE'})} >Load</button>
-            <button className="world-btn" onClick={() => simulate()}>Step It</button>
-            <button className="world-btn" onClick={() => clear()}>Clear</button>
+            <button className="world-btn" onClick={(e) => simulate()}>Step It</button>
+            <button className="world-btn" onClick={(e) => clear()}>Clear</button>
         </div>
     );
 }

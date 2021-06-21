@@ -91,7 +91,7 @@ export const Random = (state) => {
 
     for(let i = 0; i < state.rows; i++){
         for(let j = 0; j < state.cols; j++){
-            if(Math.random() > 0.7){
+            if(Math.random() > 0.9){
                 state.cells[i][j] = true;
             }else{
                 state.cells[i][j] = false;

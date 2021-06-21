@@ -15,6 +15,7 @@ body{
   width: 100vw;
   height: 100vh;
   padding: 40px;
+  background-color: rgb(209, 209, 209);
 }
 
 /* #root {
