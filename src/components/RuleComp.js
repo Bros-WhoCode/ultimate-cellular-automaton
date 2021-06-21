@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/RuleComp.css'
 
-export const RuleComp = ({idx, isValid, returnValue, array, deleteSelf, toggleValidSelf, editArray, setReturnValue}) => {
+export const RuleComp = ({idx, isValid, returnValue, isCount, relation, relationalOperations, array, deleteSelf, toggleValidSelf, editArray, setReturnValue}) => {
     return (
         <div className="rulecomp-container">
             <div className="rulecomp-wrapper">
@@ -9,10 +9,16 @@ export const RuleComp = ({idx, isValid, returnValue, array, deleteSelf, toggleVa
                 <div className="rulecomp-content">
                     <h6>{`RuleSet #${idx}`}</h6>
                     <div class="form-check rulecomp-checkbox">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" defaultChecked={isValid} onChange={() => toggleValidSelf(idx)}/>
-                        <label class="form-check-label" for="flexCheckDefault">
-                          Valid
-                        </label>
+                        <div className="rulecomp-checkbox-wrapper">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" defaultChecked={isValid} onChange={() => toggleValidSelf(idx)}/>
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Valid
+                            </label>
+                            <input class="form-check-input" type="checkbox" value="" id="flexCountDefault" defaultChecked={isCount}/>
+                            <label class="form-check-label" for="flexCountDefault">
+                                Count
+                            </label>
+                        </div>
                         <div className="rulecomp-delete-icon" onClick={() => deleteSelf(idx)}>
                             <i class="bi bi-trash-fill"></i>
                         </div>

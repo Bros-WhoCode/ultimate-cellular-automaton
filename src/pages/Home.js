@@ -11,7 +11,7 @@ export const ruleSetContext = createContext();
 export const Home = () => {
 
     const rows = 30;
-    const cols = 70;
+    const cols = 50;
 
     return (
         <ruleSetContext.Provider value={useState(initialRuleSet)}>

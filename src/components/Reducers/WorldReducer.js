@@ -18,7 +18,7 @@ class State {
             for(let i = 0; i < rows; i++){
                 this.neighbors[i] = {};
                 for(let j = 0; j < cols; j++){
-                    this.cells[i][j] = false;
+                    this.cells[i][j] = 0;
 
                     this.neighbors[i][j] = [];
                     for (let k = -1; k < 2; k++) {
@@ -48,14 +48,6 @@ class State {
         return i >= 0 && i < this.rows && j >= 0 && j < this.cols;
     }
 
-    make2DArray() {
-        let arr = new Array(this.rows);
-        for (let i = 0; i < this.rows; i++) {
-            arr[i] = new Array(this.cols);
-        }
-        return arr;
-    }
-
 }
 
 
@@ -64,18 +56,18 @@ export const BoxBorder = (state) => {
 
     for(let i = 0; i < state.rows; i++){
         for(let j = 0; j < state.cols; j++){
-            state.cells[i][j] = false;
+            state.cells[i][j] = 0;
         }
     }
 
     for(let i = 0; i < state.cols; i++){
-        state.cells[0][i] = true;
-        state.cells[state.rows-1][i] = true;
+        state.cells[0][i] = 1;
+        state.cells[state.rows-1][i] = 1;
     }
 
     for(let j = 1; j < state.rows-1; j++){
-        state.cells[j][0] = true;
-        state.cells[j][state.cols-1] = true;
+        state.cells[j][0] = 1;
+        state.cells[j][state.cols-1] = 1;
     }
 
 
@@ -85,16 +77,16 @@ export const Random = (state) => {
 
     for(let i = 0; i < state.rows; i++){
         for(let j = 0; j < state.cols; j++){
-            state.cells[i][j] = false;
+            state.cells[i][j] = 0;
         }
     }
 
     for(let i = 0; i < state.rows; i++){
         for(let j = 0; j < state.cols; j++){
             if(Math.random() > 0.9){
-                state.cells[i][j] = true;
+                state.cells[i][j] = 1;
             }else{
-                state.cells[i][j] = false;
+                state.cells[i][j] = 0;
             }
         }
     }
@@ -106,7 +98,7 @@ export const WhiteSpace = (state) => {
 
     for(let i = 0; i < state.rows; i++){
         for(let j = 0; j < state.cols; j++){
-            state.cells[i][j] = false;
+            state.cells[i][j] = 0;
         }
     }
 
@@ -129,11 +121,11 @@ export const worldReducer = (state, action) => {
 
     if(action.type === "TOGGLE_ON"){
 
-        state.cells[action.data.i][action.data.j] = true;
+        state.cells[action.data.i][action.data.j] = 1;
 
     }else if(action.type === "TOGGLE_OFF"){
 
-        state.cells[action.data.i][action.data.j] = false;
+        state.cells[action.data.i][action.data.j] = 0;
         
     }else if(action.type === "CHANGE_STATE"){
 
@@ -156,19 +148,16 @@ export const worldReducer = (state, action) => {
 
     }else if(action.type === "SIMULATING"){
 
-        let next = state.make2DArray();
+        let next = make2DArray(state.rows, state.cols);
         let ruleSet = action.value;
 
         for(let i = 0; i < state.rows; i++){
             for(let j = 0; j < state.cols; j++){
 
-                let neighs = state.neighbors[i][j];
-                
-                for( let ruleSetProp in ruleSet) {
-                    if(isCheckArrays(ruleSet.array, neighs)){
-                        next[i][j] = ruleSetProp.returnValue;
-                    }
+                for( let ruleSetProp of ruleSet) {
+                    next[i][j] = validateRuleSet(state, ruleSetProp, i, j);
                 }
+
             }
         }
 
@@ -180,12 +169,24 @@ export const worldReducer = (state, action) => {
 
 }
 
+const make2DArray = (rows, cols)=> {
+    let arr = new Array(rows);
+    for (let i = 0; i < rows; i++) {
+        arr[i] = new Array(cols);
+    }
+    return arr;
+}
 
-const isCheckArrays = (ruleSetArray, targetArray) => {
-    targetArray.forEach((item, idx) => {
-        if(item !== ruleSetArray[idx]){
-            return false
+const validateRuleSet = (state, ruleSetProp, i, j) => {
+
+    let neighs = state.neighbors[i][j];
+    for(let i = 0; i < 9; i++){
+        let neigh_state = state.cells[neighs[i].x][neighs[i].y];
+        if(neigh_state !== ruleSetProp.array[i]){
+            return false;
         }
-    })
-    return true
+    }
+
+    return true;
+
 }
