@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/RuleComp.css'
 
-export const RuleComp = ({idx, isValid, returnValue, array, deleteSelf, toggleValidSelf, editArray}) => {
+export const RuleComp = ({idx, isValid, returnValue, array, deleteSelf, toggleValidSelf, editArray, setReturnValue}) => {
     return (
         <div className="rulecomp-container">
             <div className="rulecomp-wrapper">
@@ -18,7 +18,7 @@ export const RuleComp = ({idx, isValid, returnValue, array, deleteSelf, toggleVa
                         </div>
                     </div>
                     <div className="rulecomp-returns">
-                        <select class="form-select form-select-sm" aria-label="Default select example">
+                        <select class="form-select form-select-sm" aria-label="Default select example" onChange={(value) => setReturnValue(idx, value)}>
                           <option value="0">0</option>
                           <option selected value="1">1</option>
                         </select>

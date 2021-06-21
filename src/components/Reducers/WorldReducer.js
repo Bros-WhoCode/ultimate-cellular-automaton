@@ -125,6 +125,8 @@ for(let k in StateDict) StateNames.push(k);
 
 export const worldReducer = (state, action) => {
 
+    // const [ruleSet, ] = useContext(ruleSetContext)
+
     if(action.type === "TOGGLE_ON"){
 
         state.cells[action.data.i][action.data.j] = true;
@@ -155,27 +157,17 @@ export const worldReducer = (state, action) => {
     }else if(action.type === "SIMULATING"){
 
         let next = state.make2DArray();
+        let ruleSet = action.value;
 
         for(let i = 0; i < state.rows; i++){
             for(let j = 0; j < state.cols; j++){
 
                 let neighs = state.neighbors[i][j];
-                let alive_neighs = 0;
-
-                for(let k = 0; k < 9; k++){
-                    if(state.cells[neighs[k].x][neighs[k].y]) alive_neighs += 1;
-                }
-
-                if(state.cells[i][j]){
-                    alive_neighs -= 1;
-                }
-
-                if(state.cells[i][j] === false && alive_neighs === 3){
-                    next[i][j] = true;
-                }else if(state.cells[i][j] === true && (alive_neighs < 2 || alive_neighs > 3)){
-                    next[i][j] = false;
-                }else{
-                    next[i][j] = state.cells[i][j];
+                
+                for( let ruleSetProp in ruleSet) {
+                    if(isCheckArrays(ruleSet.array, neighs)){
+                        next[i][j] = ruleSetProp.returnValue;
+                    }
                 }
             }
         }
@@ -188,3 +180,12 @@ export const worldReducer = (state, action) => {
 
 }
 
+
+const isCheckArrays = (ruleSetArray, targetArray) => {
+    targetArray.forEach((item, idx) => {
+        if(item !== ruleSetArray[idx]){
+            return false
+        }
+    })
+    return true
+}

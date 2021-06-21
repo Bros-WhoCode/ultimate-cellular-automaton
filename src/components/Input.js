@@ -1,27 +1,28 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react';
+import { ruleSetContext } from '../pages/Home';
 import '../styles/Input.css'
 import {RuleComp} from './RuleComp'
 
+const genIdx = () => {
+        return Math.random().toString(36).substring(7,10);
+}
+
+export const initialRuleSet = [
+       {
+           idx: genIdx(),
+           array: [
+               0,0,0,
+               0,1,1,
+               0,0,1
+           ],
+           returnValue: true,
+           isValid: true,
+       }
+   ]
+
 const Input = () => {
 
-    const genIdx = () => {
-        return Math.random().toString(36).substring(7,10);
-    }
-
-    const initialRuleSet = [
-        {
-            idx: genIdx(),
-            array: [
-                0,0,0,
-                0,1,1,
-                0,0,1
-            ],
-            returnValue: true,
-            isValid: true,
-        }
-    ]
-
-    const [ruleSet, setRuleSet] = useState(initialRuleSet)
+    const [ruleSet, setRuleSet] = useContext(ruleSetContext)
 
     const addRuleSet = () => {
         const newRule = {
@@ -31,7 +32,7 @@ const Input = () => {
                 0,0,0,
                 0,0,0
             ],
-            returnValue: true,
+            returnValue: false,
             isValid: true,
         }
         let newRuleSet = [...ruleSet, newRule]
@@ -48,6 +49,17 @@ const Input = () => {
         newRuleSet = newRuleSet.map(ruleSetProp => {
             if(ruleSetProp.idx === idx){
                 ruleSetProp.isValid = !ruleSetProp.isValid
+            }
+            return ruleSetProp
+        })
+        setRuleSet(newRuleSet)
+    }
+
+    const setReturnValue = (idx, value) => {
+        let newRuleSet = [...ruleSet]
+        newRuleSet = newRuleSet.map(ruleSetProp => {
+            if(ruleSetProp.idx === idx){
+                ruleSetProp.returnValue = value === 0 ? false : true
             }
             return ruleSetProp
         })
@@ -81,6 +93,7 @@ const Input = () => {
                             deleteSelf={deleteRuleSet}
                             toggleValidSelf={toggleValidRuleSet}
                             editArray={editArray}
+                            setReturnValue={setReturnValue}
                         />
                     ))
                 }
