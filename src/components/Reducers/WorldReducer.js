@@ -125,6 +125,20 @@ class State {
             this.cells[i] = new Array(this.cols);
         }
 
+        for(let i = 0; i < rows; i++){
+            this.neighbors[i] = {};
+            for(let j = 0; j < cols; j++){
+                this.neighbors[i][j] = [];
+                for (let k = -1; k < 2; k++) {
+                    for (let l = -1; l < 2; l++) {
+                        let row = (k + i + rows) % rows;
+                        let col = (l + j + cols) % cols;
+                        this.neighbors[i][j].push({x : row, y : col});
+                    }
+                }
+            }
+        }
+
         StateDict[StateNames[this.currentState]](this);
 
     }
