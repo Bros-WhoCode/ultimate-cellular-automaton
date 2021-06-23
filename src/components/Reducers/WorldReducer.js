@@ -7,6 +7,13 @@ class State {
             this.currentState = 0;
             this.rows = rows;
             this.cols = cols;
+
+            this.maxRows = rows;
+            this.maxCols = cols;
+
+            this.minRows = 10;
+            this.minCols = 10;
+
             this.neighbors = {};
 
             this.cells = new Array(rows);
@@ -35,6 +42,10 @@ class State {
 
             this.rows = prevState.rows;
             this.cols = prevState.cols;
+            this.maxRows = prevState.maxRows;
+            this.maxCols = prevState.maxCols;
+            this.minRows = prevState.minRows;
+            this.minCols = prevState.minCols;
             this.cells = prevState.cells;
             this.currentState = prevState.currentState;
             this.neighbors = prevState.neighbors;
@@ -42,7 +53,6 @@ class State {
         }
 
     }
-
 
     check(i, j){
         return i >= 0 && i < this.rows && j >= 0 && j < this.cols;
@@ -93,7 +103,6 @@ export const Random = (state) => {
 
 }
 
-
 export const WhiteSpace = (state) => {
 
     for(let i = 0; i < state.rows; i++){
@@ -109,17 +118,42 @@ export const InitialState = ({rows, cols}) => {
 }
 
 const StateDict = {WhiteSpace, BoxBorder, Random};
-let StateNames = [];
+export let StateNames = [];
 for(let k in StateDict) StateNames.push(k);
 
 
+export const reducer = (state, action) => {
 
+    if(action.type === "CHANGE_DIM"){
 
-export const worldReducer = (state, action) => {
+        console.log("Changing dimensions");
 
-    // const [ruleSet, ] = useContext(ruleSetContext)
+        let rows = action.data.rows;
+        let cols = action.data.cols;
 
-    if(action.type === "TOGGLE_ON"){
+        if(rows > state.maxRows){
+            rows = state.maxRows;
+        }
+
+        if(rows < state.minRows){
+            rows = state.minRows;
+        }
+
+        if(cols > state.maxCols){
+            cols = state.maxCols;
+        }
+
+        if(cols < state.minCols){
+            cols = state.minCols;
+        }
+
+        state.rows = rows;
+        state.cols = cols;
+
+        state.cells = make2DArray(rows, cols);
+        StateDict[StateNames[state.currentState]](state);
+
+    }else if(action.type === "TOGGLE_ON"){
 
         state.cells[action.data.i][action.data.j] = 1;
 
@@ -129,10 +163,24 @@ export const worldReducer = (state, action) => {
         
     }else if(action.type === "CHANGE_STATE"){
 
-        let newIndex = state.currentState + 1;
+        let newIndex = 0;
 
-        if(newIndex >= StateNames.length){
-            newIndex = 0;
+        if(action.data){
+
+            newIndex = state.currentState - 1;
+
+            if(newIndex < 0){
+                newIndex = StateNames.length - 1;
+            }
+
+        }else{
+
+            newIndex = state.currentState + 1;
+
+            if(newIndex >= StateNames.length){
+                newIndex = 0;
+            }
+
         }
 
         state.currentState = newIndex;
@@ -145,23 +193,29 @@ export const worldReducer = (state, action) => {
                 state.cells[i][j] = false;
             }
         }
+    
+    }else if(action.type === "SET_MAX_DIM"){
+
+        return new State(null, action.data.rows, action.data.cols);
 
     }else if(action.type === "SIMULATING"){
 
-        let next = make2DArray(state.rows, state.cols);
-        let ruleSet = action.value;
+        console.log("SIM....");
 
-        for(let i = 0; i < state.rows; i++){
-            for(let j = 0; j < state.cols; j++){
+        // let next = make2DArray(state.rows, state.cols);
+        // let ruleSet = action.value;
 
-                for( let ruleSetProp of ruleSet) {
-                    next[i][j] = validateRuleSet(state, ruleSetProp, i, j);
-                }
+        // for(let i = 0; i < state.rows; i++){
+        //     for(let j = 0; j < state.cols; j++){
 
-            }
-        }
+        //         for( let ruleSetProp of ruleSet) {
+        //             next[i][j] = validateRuleSet(state, ruleSetProp, i, j);
+        //         }
 
-        state.cells = next;
+        //     }
+        // }
+
+        // state.cells = next;
 
     }
 

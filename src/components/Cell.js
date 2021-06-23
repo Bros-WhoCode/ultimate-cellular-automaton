@@ -1,13 +1,17 @@
 import React, { useContext, useState, useEffect } from 'react';
 
-import { worldContext } from '../pages/Home';
+import { worldContext, sizeContext, convertVwToPx, convertVhToPx } from '../pages/Home';
 
 import '../styles/Cell.css';
 
 const Cell = ({i, j}) => {
 
+    const dim = useContext(sizeContext);
+
     const [styles, setStyles] = useState({
-        'backgroundColor' : 'white',
+        backgroundColor : 'white',
+        height : `${dim}px`,
+        width : `${dim}px`
     });
 
     const [world, dispatch] = useContext(worldContext);
@@ -25,20 +29,23 @@ const Cell = ({i, j}) => {
 
         }
 
-        console.log("Cell Clicked");
-
     }
+
 
     useEffect(() => {
 
         if(isAlive){
             setStyles({
-                'backgroundColor' : 'black',
-            });
+                backgroundColor : 'black',
+                height : `${dim}px`,
+                width : `${dim}px`
+            })
         }else{
             setStyles({
-                'backgroundColor' : 'white',
-            });
+                backgroundColor : 'white',
+                height : `${dim}px`,
+                width : `${dim}px`
+            })
         }
 
     }, [isAlive]);
@@ -48,7 +55,7 @@ const Cell = ({i, j}) => {
     }, [world]);
 
     return (
-        <div onClick={() => toggleLife()} style={styles} className="cell-container"></div>
+        <div onClick={(e) => toggleLife()} style={styles} className="cell-container"></div>
     );
 
 }
