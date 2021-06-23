@@ -1,21 +1,22 @@
 import React, { useContext, useState, useEffect } from 'react';
 
-import { worldContext, sizeContext, convertVwToPx, convertVhToPx } from '../pages/Home';
+import { worldContext, convertVwToPx, convertVhToPx } from '../pages/Home';
 
 import '../styles/Cell.css';
 
 const Cell = ({i, j}) => {
 
-    const dim = useContext(sizeContext);
+    
+    const [world, dispatch] = useContext(worldContext);
+    const [isAlive, setIsAlive] = useState(world.cells[i][j]);
+    const [dim, setDim] = useState(world.cellSize);
+    
 
     const [styles, setStyles] = useState({
         backgroundColor : 'white',
         height : `${dim}px`,
         width : `${dim}px`
     });
-
-    const [world, dispatch] = useContext(worldContext);
-    const [isAlive, setIsAlive] = useState(world.cells[i][j]);
 
     const toggleLife = (e) => {
 
@@ -48,10 +49,11 @@ const Cell = ({i, j}) => {
             })
         }
 
-    }, [isAlive]);
+    }, [isAlive, dim]);
 
     useEffect(() => {
         setIsAlive(world.cells[i][j]);
+        setDim(world.cellSize);
     }, [world]);
 
     return (

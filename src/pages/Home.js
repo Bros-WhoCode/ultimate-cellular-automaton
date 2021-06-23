@@ -9,7 +9,6 @@ import '../styles/Home.css';
 
 export const worldContext = createContext();
 export const ruleListContext = createContext();
-export const sizeContext = createContext();
 
 export const convertVwToPx = (vw=80) => {
     const oneVhInPx = window.innerWidth / 100;
@@ -24,21 +23,15 @@ export const convertVhToPx = (vh=80) => {
 
 export const Home = () => {
 
-    const size = 20;
-
-    const initialRows = 10;
-    const initialCols = 10;
+    // const initialRows = 10;
+    // const initialCols = 10;
 
     return (
-        <worldContext.Provider value={useReducer(worldReducer, { rows : initialRows, cols : initialCols }, InitialWorldState)}>
+        <worldContext.Provider value={useReducer(worldReducer, null, InitialWorldState)}>
             <ruleListContext.Provider value={useReducer(ruleListReducer, null, InitialRuleListState)}>
                 <div className="home-container">
                     <div className="home-wrapper">
-
-                        <sizeContext.Provider value={size}>
-                            <World/>
-                        </sizeContext.Provider>
-
+                        <World/>
                         <RuleList/>
                     </div>
                 </div>

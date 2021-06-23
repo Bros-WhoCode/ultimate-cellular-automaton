@@ -10,8 +10,6 @@ import '../styles/World.css';
 
 export const World = () => {
 
-    const dim = useContext(sizeContext);
-
     const [world, dispatch] = useContext(worldContext);
 
     const [simulation, setSimulation] = useState(null);
@@ -41,31 +39,22 @@ export const World = () => {
         if(rows){
             return (left) => {
                 if(left){
-                    dispatch({type : "CHANGE_DIM", data : {rows : world.rows - 1, cols : world.cols}})
+                    dispatch({type : "CHANGE_DIM", data : {increase: false, rows : world.rows - 1, cols : world.cols}})
                 }else{
-                    dispatch({type : "CHANGE_DIM", data : {rows : world.rows + 1, cols : world.cols}})
+                    dispatch({type : "CHANGE_DIM", data : {increase: true, rows : world.rows + 1, cols : world.cols}})
                 }
             }
         }else{
             return (left) => {
                 console.log("Changing....C");
                 if(left){
-                    dispatch({type : "CHANGE_DIM", data : {rows : world.rows, cols : world.cols - 1}})
+                    dispatch({type : "CHANGE_DIM", data : {increase: false, rows : world.rows, cols : world.cols - 1}})
                 }else{
-                    dispatch({type : "CHANGE_DIM", data : {rows : world.rows, cols : world.cols + 1}})
+                    dispatch({type : "CHANGE_DIM", data : {increase: true, rows : world.rows, cols : world.cols + 1}})
                 }
             }
         }
     }
-
-    useEffect(() => {
-
-        let totalCols = Math.floor((convertVwToPx() - dim) / dim);
-        let totalRows = Math.floor((convertVhToPx() - dim) / dim);
-
-        dispatch({type : "SET_MAX_DIM", data : {rows : totalRows, cols : totalCols}});
-
-    }, []);
 
     return (
         <div className="world-container">
