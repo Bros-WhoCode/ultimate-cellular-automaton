@@ -1,3 +1,22 @@
 .rule-list-container{
     width: 20vw;
+    height: 100vh;
+    padding: 10px;
+}
+
+.rule-list-body {
+    height: 80vh;
+    overflow-y: auto;
+}
+
+.rule-list-controls {
+    margin-top: 35px;
+}
+
+.rule-list-add {
+    font-size: 25px;
+}
+
+.rule-list-add:hover {
+    color: blue;
 }

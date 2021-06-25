@@ -1,0 +1,128 @@
+.rule-container {
+    padding: 5px;
+    background: #fff;
+    border-radius: 8px;
+    font-size: 25px;
+    margin: 10px 0px;
+}
+
+.rule-overlay {
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 8px;
+    top : 0;
+    left : 0;
+}
+
+
+.rule-title {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px 10px;
+    background: #eee;
+    margin: 0px 5px;
+    border-radius: 8px;
+}
+
+.rule-body {
+    margin: 5px;
+    padding: 5px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.rule-body-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rule-rule {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rule-spacer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rule-grid{
+    display: flex;
+    justify-content: start;
+}
+
+.rule-controls {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.rule-only-count {
+    flex: 1 0 0;
+}
+
+.rule-relations {
+    flex: 8 0 0;
+    position: relative;
+}
+
+.rule-relations-overlay {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.rule-relations-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.rule-input {
+    font-weight: 900;
+}
+
+
+.rule-visibility {
+    margin-left: auto;
+}
+
+input[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+}
+
+.rule-delete {
+    margin: 0px 10px;
+    margin-left: 15px;
+}
+
+.rule-delete:hover {
+    color: blue;
+}
+
+
+.output-cell-container {
+    height: 40px;
+    width: 40px;
+    margin: 1px;
+    border-radius: 0%;
+    border : 1px solid black;
+}
+
+
+div[operationIsCounted="1"] {
+    color: blue;
+}

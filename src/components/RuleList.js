@@ -1,20 +1,33 @@
-import { useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { ruleListContext } from '../pages/Home';
 
 import Rule from './Rule';
 
 import '../styles/RuleList.css';
 
-const RuleList = () => {
+export const ruleContext = createContext();
+
+export const RuleList = () => {
 
     const [ruleList, dispatch] = useContext(ruleListContext);
 
+    const addNewRule = () => {
+        dispatch({type : "NEW"});
+    }
 
     return (
         <div className="rule-list-container">
-            {ruleList.rules.map((RuleItem) => <Rule rule={RuleItem}></Rule>)}
+            <div className="rule-list-body">
+                {ruleList.rules.map((RuleItem, index) => (
+                    <ruleContext.Provider value={RuleItem}>
+                        <Rule></Rule>
+                    </ruleContext.Provider>
+                )
+                )}
+            </div>
+            <div className="rule-list-controls">
+                <div onClick={addNewRule} className="rule-list-add"><i class="bi bi-plus-square"></i></div>
+            </div>
         </div>
     );
 }
- 
-export default RuleList;
