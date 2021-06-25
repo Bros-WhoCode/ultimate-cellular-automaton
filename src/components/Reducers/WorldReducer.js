@@ -1,4 +1,5 @@
 import { convertVhToPx, convertVwToPx } from '../../pages/Home';
+import { Cellular } from '../Automaton';
 
 class State {
 
@@ -258,27 +259,11 @@ export const reducer = (state, action) => {
     
     }else if(action.type === "SIMULATING"){
 
-        console.log("SIM....");
-
-        // let next = make2DArray(state.rows, state.cols);
-        // let ruleSet = action.value;
-
-        // for(let i = 0; i < state.rows; i++){
-        //     for(let j = 0; j < state.cols; j++){
-
-        //         for( let ruleSetProp of ruleSet) {
-        //             next[i][j] = validateRuleSet(state, ruleSetProp, i, j);
-        //         }
-
-        //     }
-        // }
-
-        // state.cells = next;
+        state.cells = Cellular(state, action.data.ruleList);
 
     }
 
     return new State(state, 0, 0);
-
 }
 
 const make2DArray = (rows, cols)=> {
@@ -287,18 +272,4 @@ const make2DArray = (rows, cols)=> {
         arr[i] = new Array(cols);
     }
     return arr;
-}
-
-const validateRuleSet = (state, ruleSetProp, i, j) => {
-
-    let neighs = state.neighbors[i][j];
-    for(let i = 0; i < 9; i++){
-        let neigh_state = state.cells[neighs[i].x][neighs[i].y];
-        if(neigh_state !== ruleSetProp.array[i]){
-            return false;
-        }
-    }
-
-    return true;
-
 }

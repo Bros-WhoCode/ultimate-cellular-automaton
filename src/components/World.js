@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import CellRow from './CellRow';
 import Flipper from './Flipper';
-import { worldContext, convertVhToPx, convertVwToPx, sizeContext } from '../pages/Home';
+import { worldContext, convertVhToPx, convertVwToPx, sizeContext, ruleListContext } from '../pages/Home';
 
 import { StateNames } from './Reducers/WorldReducer';
 
@@ -11,6 +11,7 @@ import '../styles/World.css';
 export const World = () => {
 
     const [world, dispatch] = useContext(worldContext);
+    const [ruleList, ] = useContext(ruleListContext);
 
     const [simulation, setSimulation] = useState(null);
 
@@ -19,7 +20,7 @@ export const World = () => {
     }
 
     const simulate = () => {
-        dispatch({type : 'SIMULATING'});
+        dispatch({type : 'SIMULATING', data : {ruleList}});
     }
 
     const toggleSimulation = () => {

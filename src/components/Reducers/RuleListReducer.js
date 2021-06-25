@@ -5,14 +5,14 @@ class Rule {
     constructor(id){
 
         this.id = id
-        this.grid = [0, 0, 1,
-                     0, 1, 1,
+        this.grid = [0, 0, 0,
+                     0, 0, 0,
                      0, 0, 0]
         
-        this.onlyCount = true;
+        this.onlyCount = false;
         this.valid = true;
         this.result = 0;
-        this.relations = [0, 0, 1];
+        this.relations = [0, 0, 0];
         this.relationOperations = ['>', '<', '='];
 
     }
@@ -22,9 +22,6 @@ class Rule {
 class RuleList {
 
     constructor(prevRuleList){
-
-        console.log(this);
-        console.log(prevRuleList);
 
         if(prevRuleList){
             this.rules = prevRuleList.rules
@@ -62,11 +59,21 @@ export const reducer = (state, action) => {
 
     if(action.type === "TOGGLE_GRID"){
 
-        state.rules[state.getRuleById(action.data.id)].grid[action.data.index] = !state.rules[state.getRuleById(action.data.id)].grid[action.data.index];
+        let rule = state.rules[state.getRuleById(action.data.id)];
+        if(rule.grid[action.data.index]){
+            rule.grid[action.data.index] = 0;
+        }else{
+            rule.grid[action.data.index] = 1;
+        }
 
     }else if(action.type === "TOGGLE_RESULT"){
 
-        state.rules[state.getRuleById(action.data.id)].result = !state.rules[state.getRuleById(action.data.id)].result;
+        let rule = state.rules[state.getRuleById(action.data.id)];
+        if(rule.result){
+            rule.result = 0;
+        }else{
+            rule.result = 1;
+        }
 
     }else if(action.type === "TOGGLE_VALID"){
 
@@ -79,7 +86,12 @@ export const reducer = (state, action) => {
     }else if(action.type === "TOGGLE_RELATION"){
 
         let rule = state.rules[state.getRuleById(action.data.id)];
-        rule.relations[action.data.index] = !rule.relations[action.data.index];
+        if(rule.relations[action.data.index]){
+            rule.relations[action.data.index] = 0;
+        }else{
+            rule.relations[action.data.index] = 1;
+        }
+
 
         if(action.data.index === 0){
             rule.relations[1] = 0;
