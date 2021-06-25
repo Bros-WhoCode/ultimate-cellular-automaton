@@ -1,29 +1,42 @@
-import React, {createContext, useReducer} from 'react';
+import React, {createContext, useEffect, useReducer, useState} from 'react';
 import World from '../components/World'; 
-import { worldReducer, InitialState } from '../components/Reducers/WorldReducer';
-import Input, {initialRuleSet} from '../components/Input'
+import { reducer as worldReducer, InitialState as InitialWorldState } from '../components/Reducers/WorldReducer';
+import { reducer as ruleListReducer, InitialState as InitialRuleListState } from '../components/Reducers/RuleListReducer';
+import { RuleList } from '../components/RuleList';
+
+
 import '../styles/Home.css';
-import { useState } from 'react/cjs/react.development';
 
 export const worldContext = createContext();
-export const ruleSetContext = createContext();
+export const ruleListContext = createContext();
+
+export const convertVwToPx = (vw=80) => {
+    const oneVhInPx = window.innerWidth / 100;
+    return oneVhInPx * vw;
+};
+
+export const convertVhToPx = (vh=80) => {
+    const oneVhInPx = window.innerHeight / 100;
+    return oneVhInPx * vh;
+};
+
 
 export const Home = () => {
 
-    const rows = 30;
-    const cols = 70;
+    // const initialRows = 10;
+    // const initialCols = 10;
 
     return (
-        <ruleSetContext.Provider value={useState(initialRuleSet)}>
-            <worldContext.Provider value={useReducer(worldReducer, {rows : rows, cols : cols}, InitialState)}>
+        <worldContext.Provider value={useReducer(worldReducer, null, InitialWorldState)}>
+            <ruleListContext.Provider value={useReducer(ruleListReducer, null, InitialRuleListState)}>
                 <div className="home-container">
                     <div className="home-wrapper">
                         <World/>
-                        <Input/>
+                        <RuleList/>
                     </div>
                 </div>
-            </worldContext.Provider>
-        </ruleSetContext.Provider>
+            </ruleListContext.Provider>
+        </worldContext.Provider>
     )
 }
 

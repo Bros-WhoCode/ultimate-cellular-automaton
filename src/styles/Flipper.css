@@ -1,0 +1,29 @@
+.flipper-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.flipper-left, .flipper-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 25px;
+    text-align: center;
+    margin: 0 0px;
+    height: 40px;
+    width:  40px;
+}
+
+.flipper-content {
+    font-size: 25px;
+    width: fit-content;
+    text-align: center;
+    padding: 5px;
+}
+
+.flipper-left:hover, .flipper-right:hover {
+    color: blue;
+}

@@ -1,17 +1,22 @@
 import React, { useContext, useState, useEffect } from 'react';
 
-import { worldContext } from '../pages/Home';
+import { worldContext, convertVwToPx, convertVhToPx } from '../pages/Home';
 
 import '../styles/Cell.css';
 
 const Cell = ({i, j}) => {
 
-    const [styles, setStyles] = useState({
-        'backgroundColor' : 'white',
-    });
-
+    
     const [world, dispatch] = useContext(worldContext);
     const [isAlive, setIsAlive] = useState(world.cells[i][j]);
+    const [dim, setDim] = useState(world.cellSize);
+    
+
+    const [styles, setStyles] = useState({
+        backgroundColor : 'white',
+        height : `${dim}px`,
+        width : `${dim}px`
+    });
 
     const toggleLife = (e) => {
 
@@ -25,30 +30,34 @@ const Cell = ({i, j}) => {
 
         }
 
-        console.log("Cell Clicked");
-
     }
+
 
     useEffect(() => {
 
         if(isAlive){
             setStyles({
-                'backgroundColor' : 'black',
-            });
+                backgroundColor : 'black',
+                height : `${dim}px`,
+                width : `${dim}px`
+            })
         }else{
             setStyles({
-                'backgroundColor' : 'white',
-            });
+                backgroundColor : 'white',
+                height : `${dim}px`,
+                width : `${dim}px`
+            })
         }
 
-    }, [isAlive]);
+    }, [isAlive, dim]);
 
     useEffect(() => {
         setIsAlive(world.cells[i][j]);
+        setDim(world.cellSize);
     }, [world]);
 
     return (
-        <div onClick={() => toggleLife()} style={styles} className="cell-container"></div>
+        <div onClick={(e) => toggleLife()} style={styles} className="cell-container"></div>
     );
 
 }

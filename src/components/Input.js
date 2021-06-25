@@ -7,6 +7,8 @@ const genIdx = () => {
         return Math.random().toString(36).substring(7,10);
 }
 
+export const relationalOperations = [">", "<", "=", ">=", "<="];
+
 export const initialRuleSet = [
        {
            idx: genIdx(),
@@ -17,6 +19,8 @@ export const initialRuleSet = [
            ],
            returnValue: true,
            isValid: true,
+           isCount : true,
+           relation : 0,
        }
    ]
 
@@ -34,6 +38,8 @@ const Input = () => {
             ],
             returnValue: false,
             isValid: true,
+            isCount : true,
+            relation : 0,
         }
         let newRuleSet = [...ruleSet, newRule]
         setRuleSet(newRuleSet)
@@ -75,7 +81,6 @@ const Input = () => {
             return ruleSetProp
         })
         setRuleSet(newRuleSet)
-        console.log(ruleSet)
     }
 
     return (
@@ -89,6 +94,9 @@ const Input = () => {
                             idx={ruleSetProp.idx} 
                             isValid={ruleSetProp.isValid}
                             returnValue={ruleSetProp.returnValue} 
+                            isCount={ruleSetProp.isCount}
+                            relation={ruleSetProp.relation}
+                            relationalOperations={relationalOperations}
                             array={ruleSetProp.array}
                             deleteSelf={deleteRuleSet}
                             toggleValidSelf={toggleValidRuleSet}

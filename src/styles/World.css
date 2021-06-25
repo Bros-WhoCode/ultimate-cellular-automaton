@@ -1,20 +1,60 @@
 .world-container {
     width: 80vw;
-    overflow: hidden;
+    height: 100vh;
 }
 
-.world-cell-row {
+.world-wrapper {
+    height: 80vh;
+
     display: flex;
-    width: 100%;
-    height: fit-content;
+    justify-content: center;
+    align-items: center;
+}
+
+.world-controls {
+    width: 80vw;
+    margin-top: 25px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.world-simlation-buttons {
+    flex: 1 0 0;
+    display: flex;
+    justify-content: start;
+}
+
+.world-state-buttons {
+    flex: 2 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.world-grid-controls {
+    flex: 1 0 0;
+    display: flex;
+    justify-content: end;
 }
 
 .world-btn{
-    outline: none;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px 10px;
-    border-radius: 20px;
-    box-shadow: 7px 7px 10px rgba(0,0,0,.7);
-    background: whitesmoke;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 10px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+
+}
+
+.world-play-pause {
+    font-size: 35px;
+}
+
+.world-btn:hover {
+    color: blue;
 }
