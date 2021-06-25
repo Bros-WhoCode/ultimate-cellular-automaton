@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/ultimate-cellular-automaton/static/css/main.7820ba60.chunk.css",
-    "main.js": "/ultimate-cellular-automaton/static/js/main.1ccb23a8.chunk.js",
-    "main.js.map": "/ultimate-cellular-automaton/static/js/main.1ccb23a8.chunk.js.map",
+    "main.js": "/ultimate-cellular-automaton/static/js/main.220433c2.chunk.js",
+    "main.js.map": "/ultimate-cellular-automaton/static/js/main.220433c2.chunk.js.map",
     "runtime-main.js": "/ultimate-cellular-automaton/static/js/runtime-main.575aa1df.js",
     "runtime-main.js.map": "/ultimate-cellular-automaton/static/js/runtime-main.575aa1df.js.map",
-    "static/js/2.7d066406.chunk.js": "/ultimate-cellular-automaton/static/js/2.7d066406.chunk.js",
-    "static/js/2.7d066406.chunk.js.map": "/ultimate-cellular-automaton/static/js/2.7d066406.chunk.js.map",
+    "static/js/2.1c006a27.chunk.js": "/ultimate-cellular-automaton/static/js/2.1c006a27.chunk.js",
+    "static/js/2.1c006a27.chunk.js.map": "/ultimate-cellular-automaton/static/js/2.1c006a27.chunk.js.map",
     "static/js/3.eaec9610.chunk.js": "/ultimate-cellular-automaton/static/js/3.eaec9610.chunk.js",
     "static/js/3.eaec9610.chunk.js.map": "/ultimate-cellular-automaton/static/js/3.eaec9610.chunk.js.map",
     "index.html": "/ultimate-cellular-automaton/index.html",
     "static/css/main.7820ba60.chunk.css.map": "/ultimate-cellular-automaton/static/css/main.7820ba60.chunk.css.map",
-    "static/js/2.7d066406.chunk.js.LICENSE.txt": "/ultimate-cellular-automaton/static/js/2.7d066406.chunk.js.LICENSE.txt"
+    "static/js/2.1c006a27.chunk.js.LICENSE.txt": "/ultimate-cellular-automaton/static/js/2.1c006a27.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.575aa1df.js",
-    "static/js/2.7d066406.chunk.js",
+    "static/js/2.1c006a27.chunk.js",
     "static/css/main.7820ba60.chunk.css",
-    "static/js/main.1ccb23a8.chunk.js"
+    "static/js/main.220433c2.chunk.js"
   ]
 }
