@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext } from 'react';
 import { ruleListContext } from '../pages/Home';
 
 import Rule from './Rule';
@@ -19,14 +19,14 @@ export const RuleList = () => {
         <div className="rule-list-container">
             <div className="rule-list-body">
                 {ruleList.rules.map((RuleItem, index) => (
-                    <ruleContext.Provider value={RuleItem}>
+                    <ruleContext.Provider key={index} value={RuleItem}>
                         <Rule></Rule>
                     </ruleContext.Provider>
                 )
                 )}
             </div>
             <div className="rule-list-controls">
-                <div onClick={addNewRule} className="rule-list-add"><i class="bi bi-plus-square"></i></div>
+                <div onClick={addNewRule} className="rule-list-add"><i className="bi bi-plus-square"></i></div>
             </div>
         </div>
     );

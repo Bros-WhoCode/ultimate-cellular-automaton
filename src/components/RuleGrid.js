@@ -36,7 +36,7 @@ const GridCell = ({index}) => {
 
     useEffect(() => {
         setIsAlive(rule.grid[index]);
-    }, [ruleList]);
+    }, [ruleList, rule, index]);
 
     return (
         <div onClick={toggleLife} style={styles} className="grid-cell-container"></div>
@@ -51,13 +51,13 @@ const RuleGrid = () => {
     return (
         <div className="rule-grid-container">
             <div className="rule-grid-row">
-                {rule.grid.slice(0, 3).map((state, index) => <GridCell index={0 + index}></GridCell>)}
+                {rule.grid.slice(0, 3).map((state, index) => <GridCell key={0 + index} index={0 + index}></GridCell>)}
             </div>
             <div className="rule-grid-row">
-                {rule.grid.slice(3, 6).map((state, index) => <GridCell index={3 + index}></GridCell>)}
+                {rule.grid.slice(3, 6).map((state, index) => <GridCell key={3 + index} index={3 + index}></GridCell>)}
             </div>
             <div className="rule-grid-row">
-                {rule.grid.slice(6, 9).map((state, index) => <GridCell index={6 + index}></GridCell>)}
+                {rule.grid.slice(6, 9).map((state, index) => <GridCell key={6 + index} index={6 + index}></GridCell>)}
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useReducer, useState} from 'react';
+import React, {createContext, useReducer} from 'react';
 import World from '../components/World'; 
 import { reducer as worldReducer, InitialState as InitialWorldState } from '../components/Reducers/WorldReducer';
 import { reducer as ruleListReducer, InitialState as InitialRuleListState } from '../components/Reducers/RuleListReducer';

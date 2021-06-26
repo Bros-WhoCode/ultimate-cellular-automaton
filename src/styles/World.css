@@ -22,7 +22,7 @@
 .world-simlation-buttons {
     flex: 1 0 0;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .world-state-buttons {
@@ -34,7 +34,7 @@
 .world-grid-controls {
     flex: 1 0 0;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .world-btn{

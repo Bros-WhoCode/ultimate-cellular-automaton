@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 
-import { worldContext, convertVwToPx, convertVhToPx } from '../pages/Home';
+import { worldContext } from '../pages/Home';
 
 import '../styles/Cell.css';
 
@@ -54,7 +54,7 @@ const Cell = ({i, j}) => {
     useEffect(() => {
         setIsAlive(world.cells[i][j]);
         setDim(world.cellSize);
-    }, [world]);
+    }, [world, i, j]);
 
     return (
         <div onClick={(e) => toggleLife()} style={styles} className="cell-container"></div>
