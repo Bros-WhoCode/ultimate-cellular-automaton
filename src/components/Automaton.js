@@ -68,7 +68,6 @@ const validateRule = (worldState, rule, i, j) => {
         conditionSatisfied = true;
         for(let i = 0; i < 9; i++){
             let neighs = neighbors[i];
-            console.log(worldState.cells[neighs.x][neighs.y], rule.grid[i]);
             if(worldState.cells[neighs.x][neighs.y] !== rule.grid[i]) conditionSatisfied=false; break;
         }
 

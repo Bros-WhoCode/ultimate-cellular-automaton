@@ -47,7 +47,6 @@ export const World = () => {
             }
         }else{
             return (left) => {
-                console.log("Changing....C");
                 if(left){
                     dispatch({type : "CHANGE_DIM", data : {increase: false, rows : world.rows, cols : world.cols - 1}})
                 }else{

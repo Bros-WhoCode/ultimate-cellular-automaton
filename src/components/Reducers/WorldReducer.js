@@ -80,8 +80,6 @@ class State {
 
     recalculate({increase, rows, cols}){
 
-        console.log(this);
-
         if(increase){
 
             if(rows > this.maxRows || cols > this.maxCols){
