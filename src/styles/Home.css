@@ -1,3 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.home-container{
+    padding: 40px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
 .home-wrapper{
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-title{
+    position: absolute;
+    font-size: 50px;
+    font-family: 'Press Start 2P', cursive;
+    bottom: 200px;
+    right: 50px;
+    width: 100px;
+    transform-origin: 100% 0%;
+    transform: rotate(90deg);
+    color: transparent;
+    text-shadow: 2px 2px 0px teal;
 }

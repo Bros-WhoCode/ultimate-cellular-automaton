@@ -21,7 +21,7 @@ export const convertVhToPx = (vh=80) => {
 };
 
 
-export const Home = () => {
+export const CA = () => {
 
     // const initialRows = 10;
     // const initialCols = 10;
@@ -30,6 +30,9 @@ export const Home = () => {
         <worldContext.Provider value={useReducer(worldReducer, null, InitialWorldState)}>
             <ruleListContext.Provider value={useReducer(ruleListReducer, null, InitialRuleListState)}>
                 <div className="home-container">
+                    {/* <div className="home-title">
+                        CELLULAR AUTOMATA
+                    </div> */}
                     <div className="home-wrapper">
                         <World/>
                         <RuleList/>

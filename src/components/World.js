@@ -69,9 +69,9 @@ export const World = () => {
 
             <div className="world-controls">
                 <div className="world-simlation-buttons">
-                    {!simulation && <div className="world-btn world-play-pause" onClick={(e) => toggleSimulation()}><i class="bi bi-play"></i></div>}
-                    {simulation && <div className="world-btn world-play-pause" onClick={(e) => toggleSimulation()}><i class="bi bi-pause"></i></div>}
-                    <div className="world-btn world-step-it" onClick={(e) => simulate()}><i class="bi bi-chevron-double-right"></i></div>
+                    {!simulation && <div className="world-btn world-play-pause" onClick={(e) => toggleSimulation()}><i className="bi bi-play"></i></div>}
+                    {simulation && <div className="world-btn world-play-pause" onClick={(e) => toggleSimulation()}><i className="bi bi-pause"></i></div>}
+                    <div className="world-btn world-step-it" onClick={(e) => simulate()}><i className="bi bi-chevron-double-right"></i></div>
                 </div>
                 <div className="world-state-buttons">
                     <Flipper state={StateNames[world.currentState]} callback={stateChange}></Flipper>
@@ -79,7 +79,7 @@ export const World = () => {
                 <div className="world-grid-controls">
                     <Flipper state={world.rows} callback={changeDim(true)}></Flipper>
                     <Flipper state={world.cols} callback={changeDim(false)}></Flipper>
-                    <div className="world-btn world-clear" onClick={(e) => clear()}><i class="bi bi-x-lg"></i></div>
+                    <div className="world-btn world-clear" onClick={(e) => clear()}><i className="bi bi-x-lg"></i></div>
                 </div>
             </div>
         </div>

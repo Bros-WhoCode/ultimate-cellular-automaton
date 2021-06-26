@@ -8,23 +8,23 @@ export const RuleComp = ({idx, isValid, returnValue, isCount, relation, relation
                 <RuleGrid array={array} ruleSetIdx={idx} editArray={editArray}/>
                 <div className="rulecomp-content">
                     <h6>{`RuleSet #${idx}`}</h6>
-                    <div class="form-check rulecomp-checkbox">
+                    <div className="form-check rulecomp-checkbox">
                         <div className="rulecomp-checkbox-wrapper">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" defaultChecked={isValid} onChange={() => toggleValidSelf(idx)}/>
-                            <label class="form-check-label" for="flexCheckDefault">
+                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" defaultChecked={isValid} onChange={() => toggleValidSelf(idx)}/>
+                            <label className="form-check-label" for="flexCheckDefault">
                                 Valid
                             </label>
-                            <input class="form-check-input" type="checkbox" value="" id="flexCountDefault" defaultChecked={isCount}/>
-                            <label class="form-check-label" for="flexCountDefault">
+                            <input className="form-check-input" type="checkbox" value="" id="flexCountDefault" defaultChecked={isCount}/>
+                            <label className="form-check-label" for="flexCountDefault">
                                 Count
                             </label>
                         </div>
                         <div className="rulecomp-delete-icon" onClick={() => deleteSelf(idx)}>
-                            <i class="bi bi-trash-fill"></i>
+                            <i className="bi bi-trash-fill"></i>
                         </div>
                     </div>
                     <div className="rulecomp-returns">
-                        <select class="form-select form-select-sm" aria-label="Default select example" onChange={(value) => setReturnValue(idx, value)}>
+                        <select className="form-select form-select-sm" aria-label="Default select example" onChange={(value) => setReturnValue(idx, value)}>
                           <option value="0">0</option>
                           <option selected value="1">1</option>
                         </select>

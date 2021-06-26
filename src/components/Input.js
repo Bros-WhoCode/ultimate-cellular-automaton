@@ -108,7 +108,7 @@ const Input = () => {
             </div>
             <div className="input-footer">
                 <div className="input-add-icon">
-                    <i class="bi bi-plus-square-dotted" onClick={() => addRuleSet()}></i>
+                    <i className="bi bi-plus-square-dotted" onClick={() => addRuleSet()}></i>
                 </div>
             </div>
         </div>
