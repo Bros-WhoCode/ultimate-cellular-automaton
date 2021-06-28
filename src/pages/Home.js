@@ -1,14 +1,18 @@
 import React, {createContext, useReducer} from 'react';
-import World from '../components/World'; 
+
 import { reducer as worldReducer, InitialState as InitialWorldState } from '../components/Reducers/WorldReducer';
 import { reducer as ruleListReducer, InitialState as InitialRuleListState } from '../components/Reducers/RuleListReducer';
-import { RuleList } from '../components/RuleList';
+import { sudokuReducer, getSudokuInitialState } from '../components/Reducers/SudokuReducer';
 
+import { RuleList } from '../components/RuleList';
+import World from '../components/World';
+import { Sudoku } from './Sudoku';
 
 import '../styles/Home.css';
 
 export const worldContext = createContext();
 export const ruleListContext = createContext();
+export const sudokuContext = createContext();
 
 export const convertVwToPx = (vw=80) => {
     const oneVhInPx = window.innerWidth / 100;
@@ -27,16 +31,22 @@ export const Home = () => {
     // const initialCols = 10;
 
     return (
-        <worldContext.Provider value={useReducer(worldReducer, null, InitialWorldState)}>
-            <ruleListContext.Provider value={useReducer(ruleListReducer, null, InitialRuleListState)}>
-                <div className="home-container">
-                    <div className="home-wrapper">
+        <div className="home-container">
+            <worldContext.Provider value={useReducer(worldReducer, null, InitialWorldState)}>
+                <ruleListContext.Provider value={useReducer(ruleListReducer, null, InitialRuleListState)}>
+                    <div className="home-world-grid-wrapper">
                         <World/>
                         <RuleList/>
                     </div>
+                </ruleListContext.Provider>
+            </worldContext.Provider>
+            <sudokuContext.Provider value={useReducer(sudokuReducer, null, getSudokuInitialState)}>
+                <div className="home-sudoku-wrapper">
+                    <Sudoku/>
                 </div>
-            </ruleListContext.Provider>
-        </worldContext.Provider>
+            </sudokuContext.Provider>
+        </div>
+
     )
 }
 

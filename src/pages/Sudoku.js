@@ -1,15 +1,11 @@
-  
-import React from 'react'
-import { useContext } from 'react/cjs/react.production.min';
-import { getSudokuInitialState, SudokuContext } from '../components/Reducers/SudokuReducer';
+import React, { useContext } from 'react';
 import { SudokuCell } from '../components/SudokuCell';
 import { findEmptyLocation, isSafeCell} from '../components/SudokuUtils';
+import { sudokuContext } from './Home';
 
 export const Sudoku = () => {
 
-    const [sudokuState, ] = useContext(SudokuContext)
-    // let sudokuState = getSudokuInitialState()
-
+    const [sudokuState, ] = useContext(sudokuContext);
     const solveSudoku = () => {
         setTimeout(() => {
             

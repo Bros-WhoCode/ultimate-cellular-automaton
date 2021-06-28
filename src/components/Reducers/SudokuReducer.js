@@ -1,8 +1,4 @@
-import { createContext } from "react";
-
-export const SudokuContext = createContext();
-
-export let getSudokuInitialState = () => {
+export const getSudokuInitialState = () => {
     let cells = []
     for(let r = 0; r < 9; r++){
         let row = [];

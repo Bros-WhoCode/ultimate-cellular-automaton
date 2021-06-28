@@ -3,8 +3,13 @@
     background-size: cover;
     width: 100vw;
     padding: 40px;
+
 }
 
-.home-wrapper{
+.home-world-grid-wrapper{
+    display: flex;
+}
+
+.home-sudoku-wrapper {
     display: flex;
 }

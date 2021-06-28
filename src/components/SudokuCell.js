@@ -1,10 +1,12 @@
-import React, {useContext} from 'react'
+import React, {useContext} from 'react';
+import { sudokuContext } from '../pages/Home';
+
 import '../styles/Sudoku.css'
-import { SudokuContext } from './Reducers/SudokuReducer';
 
 export const SudokuCell = ({row, col, isSafe, isError, isUnderGen}) => {
-    // const [cellValue, setCellValue] = useState(0)
-    const [sudokuState, sudokuDispatch] = useContext(SudokuContext);
+
+    const [sudokuState, sudokuDispatch] = useContext(sudokuContext);
+
     const handleValue = (event, isIncre) => {
         event.preventDefault()
         let currentVal = sudokuState[row][col].value
