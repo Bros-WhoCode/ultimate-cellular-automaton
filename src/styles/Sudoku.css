@@ -1,14 +1,5 @@
 .sudoku-container{
-    width: 100vw;
-    height: 100vh;
-    background-image: url('../assets/bg2.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    
 }
 
 .sudoku-wrapper {
@@ -50,4 +41,17 @@
 .sudoku-controls {
     display: flex;
     padding: 20px;
+}
+
+.cell-top{
+    margin-top: 5px;
+}
+
+.cell-left{
+    margin-left: 5px;
+}
+
+.cell-isError{
+    background: rgb(255, 150, 150);
+    color: whitesmoke;
 }

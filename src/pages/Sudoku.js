@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { SudokuCell } from '../components/SudokuCell';
+import React, {useState } from 'react';
+import { getSudokuInitialState } from '../components/Reducers/SudokuReducer';
 import { findEmptyLocation, isSafeCell} from '../components/SudokuUtils';
-import { sudokuContext } from './Home';
-
+import '../styles/Sudoku.css'
 export const Sudoku = () => {
 
-    const [sudokuState, ] = useContext(sudokuContext);
+    // const [sudokuState, sudokuDis] = useContext(sudokuContext);
+    const [sudokuState, setSudokuState] = useState(getSudokuInitialState);
     const solveSudoku = () => {
         setTimeout(() => {
             
@@ -16,14 +16,47 @@ export const Sudoku = () => {
             return true
         }
         for(let i = 1; i < 10; i++){
-            if(isSafeCell(sudokuState, row, col, i)){
-            }
+            let newState = [...sudokuState].map(row => {
+                return row.slice()
+            })
+            newState[row][col].value = i
+            setSudokuState(newState)
+
+            if(solveSudoku()){ return true }
+
+            newState = [...sudokuState].map(row => {
+                return row.slice()
+            })
+            newState[row][col].value = 0
+            setSudokuState(newState)
+
         }
         return false
     }
 
-    const generateSolution = () => {
+    const handleValue = (event, isIncre, row, col) => {
+        event.preventDefault()
+        let currentVal = sudokuState[row][col].value
+        let nextVal = currentVal
 
+        if(isIncre){
+            nextVal =  currentVal >= 9 ? 0 : currentVal + 1;
+        }else{
+            nextVal = currentVal <= 0 ? 9 : currentVal - 1;
+        }
+
+        let newState = [...sudokuState].map(rowCells => {
+            return rowCells.slice()
+        })
+        newState[row][col].value = nextVal
+
+        if(nextVal !== 0 && !isSafeCell(sudokuState, row, col, nextVal)){
+            newState[row][col].isError = true
+        }else{
+            newState[row][col].isError = false
+        }
+
+        setSudokuState(newState)
     }
     
     return (
@@ -35,13 +68,12 @@ export const Sudoku = () => {
                         <React.Fragment>
                             {
                                 row.map((cell, c) => (
-                                    <SudokuCell 
-                                        key={r*9 + c} 
-                                        row={cell.row} 
-                                        col={cell.col} 
-                                        isSafe={cell.isSafe}
-                                        isError={cell.isError}
-                                    />
+                                    <div className={`sudokucell-container ${r%3 === 0 ? "cell-top": ''}  ${c%3===0 ? "cell-left": ''}  ${cell.isError ? 'cell-isError': ''}`} 
+                                        onClick={e => handleValue(e, true, r, c)} 
+                                        onContextMenu={e => handleValue(e, false, r, c)} 
+                                    >
+                                        {cell.value === 0 ? '' : cell.value}
+                                    </div>
                                 ))
                             }
                         </React.Fragment>
@@ -50,7 +82,7 @@ export const Sudoku = () => {
                 
             </div>
             <div className="sudoku-controls">
-                <div className="sudokubtn" onClick={() => generateSolution()}>
+                <div className="sudokubtn" >
                     {
                         // <i className="bi bi-pause"></i>
                         <i className="bi bi-play"></i>
@@ -61,5 +93,5 @@ export const Sudoku = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 }

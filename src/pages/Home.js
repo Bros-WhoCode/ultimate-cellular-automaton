@@ -39,12 +39,10 @@ export const Home = () => {
                         <RuleList/>
                     </div>
                 </ruleListContext.Provider>
-            </worldContext.Provider>
-            <sudokuContext.Provider value={useReducer(sudokuReducer, null, getSudokuInitialState)}>
-                <div className="home-sudoku-wrapper">
-                    <Sudoku/>
-                </div>
-            </sudokuContext.Provider>
+            </worldContext.Provider> 
+            <div className="home-sudoku-wrapper">
+                <Sudoku/>
+            </div> 
         </div>
 
     )

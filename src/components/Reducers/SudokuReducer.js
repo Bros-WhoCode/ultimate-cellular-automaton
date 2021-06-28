@@ -19,6 +19,7 @@ export const getSudokuInitialState = () => {
 
 export const sudokuReducer = (state, action) => {
     if(action.type === "CHANGE_VALUE"){
+        console.log(action)
         let r = action.row
         let c = action.col
         let newState = [...state].map(row => {

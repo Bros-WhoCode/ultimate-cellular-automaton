@@ -1,15 +1,20 @@
-.home-container{
+.home-world-grid-wrapper{
+    display: flex;
     background: url('../assets/bg1.jpg');
     background-size: cover;
     width: 100vw;
     padding: 40px;
-
-}
-
-.home-world-grid-wrapper{
-    display: flex;
 }
 
 .home-sudoku-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../assets/bg2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

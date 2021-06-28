@@ -1,5 +1,5 @@
 export const isSafeCell = (grid, rowNo, colNo, value) => {
-    return isSafeRow(grid, rowNo, value) && 
+    return isSafeRow(grid, rowNo, colNo, value) && 
     isSafeCol(grid, rowNo, colNo, value) &&
     isSafeBlock(grid, rowNo, colNo, value);
 }
@@ -47,4 +47,15 @@ export const findEmptyLocation = (grid) => {
         }
     }
     return [null, null, false]
+}
+
+export const haveErrors = (grid) => {
+    for(let r = 0; r < 9; r++){
+        for(let c = 0; c < 9; c++){
+            if(grid[r][c].isError === true){
+                return true
+            }
+        }
+    }
+    return false
 }
