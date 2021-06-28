@@ -1,5 +1,6 @@
 .grid-cell-container {
     height: 30px;
+    width: 30px;
     margin: 1px;
     border-radius: 0%;
     border : 1px solid black;

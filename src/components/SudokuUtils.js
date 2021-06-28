@@ -1,6 +1,6 @@
 export const isSafeCell = (grid, rowNo, colNo, value) => {
     return isSafeRow(grid, rowNo, value) && 
-    isSafeCol(grid, colNo, value) &&
+    isSafeCol(grid, rowNo, colNo, value) &&
     isSafeBlock(grid, rowNo, colNo, value);
 }
 

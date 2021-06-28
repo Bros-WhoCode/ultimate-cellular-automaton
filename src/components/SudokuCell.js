@@ -1,30 +1,35 @@
-import React, { useState } from 'react'
-
+import React, {useContext} from 'react'
 import '../styles/Sudoku.css'
-import { isSafeRow } from './SudokuUtils'
+import { SudokuContext } from './Reducers/SudokuReducer';
 
-export const SudokuCell = ({value, row, col, isSafe, isError, isUnderGen, sudokuState, sudokuDispatch}) => {
-    const [cellValue, setCellValue] = useState(0)
+export const SudokuCell = ({row, col, isSafe, isError, isUnderGen}) => {
+    // const [cellValue, setCellValue] = useState(0)
+    const [sudokuState, sudokuDispatch] = useContext(SudokuContext);
     const handleValue = (event, isIncre) => {
         event.preventDefault()
+        let currentVal = sudokuState[row][col].value
         if(isIncre){
-            setCellValue(cellValue >= 9? 1: cellValue+1)
+            let nextVal =  currentVal > 9 ? 0 : currentVal + 1;
+            console.log("Changing value from ", currentVal, "to ",  nextVal);
+           sudokuDispatch({
+               type: "CHANGE_VALUE",
+               row: row,
+               col: col,
+               returnVal: nextVal
+           })
         }else{
-            setCellValue(cellValue <= 0? 9: cellValue-1)
+            let nextVal = currentVal < 0 ? 9 : currentVal - 1
+           sudokuDispatch({
+               type: "CHANGE_VALUE",
+               row: row,
+               col: col,
+               returnVal: nextVal
+           })
         }
-        let errorType = null
-        if(!isSafeRow(sudokuState, row, col, cellValue))
-        sudokuDispatch({
-            type: "changeValue", 
-            rowNo: row,
-            colNo: col,
-            value: cellValue,
-            errorType: errorType
-        })
     }
     return (
         <div className="sudokucell-container" onClick={e => handleValue(e, true)} onContextMenu={e => handleValue(e, false)} >
-            {cellValue === 0 ? '' : cellValue}
+            {sudokuState[row][col].value === 0 ? '' : sudokuState[row][col].value}
         </div>
     )
 }

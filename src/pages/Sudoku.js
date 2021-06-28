@@ -1,78 +1,63 @@
   
-import React, { useState, useReducer } from 'react'
+import React from 'react'
+import { useContext } from 'react/cjs/react.production.min';
+import { getSudokuInitialState, SudokuContext } from '../components/Reducers/SudokuReducer';
 import { SudokuCell } from '../components/SudokuCell';
-import { sudokuReducer, sudokuInitialState } from '../components/Reducers/SudokuReducer';
 import { findEmptyLocation, isSafeCell} from '../components/SudokuUtils';
+
 export const Sudoku = () => {
 
-    
-    const [sudokuState, sudokuDispatch] = useReducer(sudokuReducer, sudokuInitialState)
-    
+    const [sudokuState, ] = useContext(SudokuContext)
+    // let sudokuState = getSudokuInitialState()
+
     const solveSudoku = () => {
         setTimeout(() => {
             
         }, 100);
         let [row, col, emptyCheck] = findEmptyLocation(sudokuState)
+        console.log(row, col);
         if(!emptyCheck) {
             return true
         }
         for(let i = 1; i < 10; i++){
             if(isSafeCell(sudokuState, row, col, i)){
-                sudokuDispatch({
-                    type: "changeValue", 
-                    rowNo: row,
-                    colNo: col,
-                    value: i,
-                    errorType: null
-                })
-                if(isUnderGen && solveSudoku()) return true
-                sudokuDispatch({
-                    type: "changeValue", 
-                    rowNo: row,
-                    colNo: col,
-                    value: 0,
-                    errorType: null
-                })
             }
         }
         return false
     }
 
-    const [isUnderGen, setIsUnderGen] = useState(false);
+    const generateSolution = () => {
+
+    }
     
     return (
         <div className="sudoku-container">
             <div className="sudoku-wrapper">
+                
                 {
                     sudokuState.map((row, r) => (
                         <React.Fragment>
                             {
                                 row.map((cell, c) => (
                                     <SudokuCell 
-                                        sudokuState={sudokuState}
-                                        sudokuDispatch={sudokuDispatch}
-                                        key={r*9 + c}
-                                        val={cell.value} 
+                                        key={r*9 + c} 
                                         row={cell.row} 
                                         col={cell.col} 
                                         isSafe={cell.isSafe}
                                         isError={cell.isError}
-                                        isUnderGen={isUnderGen}
                                     />
                                 ))
                             }
                         </React.Fragment>
                     )) 
                 }
+                
             </div>
             <div className="sudoku-controls">
-                <div className="sudokubtn" onClick={() => {setIsUnderGen(!isUnderGen); solveSudoku()}}>
+                <div className="sudokubtn" onClick={() => generateSolution()}>
                     {
-                        isUnderGen ? (
-                            <i className="bi bi-pause"></i>
-                        ):(
-                            <i className="bi bi-play"></i>
-                        )
+                        // <i className="bi bi-pause"></i>
+                        <i className="bi bi-play"></i>
                     }
                 </div>
                 <div className="sudokubtn">

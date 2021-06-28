@@ -1,7 +1,9 @@
 import '../styles/App.css';
 import { Switch, Route } from 'react-router-dom'
 import { Home } from './Home';
-import {Sudoku} from './Sudoku';
+import { useReducer } from 'react';
+import { getSudokuInitialState, SudokuContext, sudokuReducer } from '../components/Reducers/SudokuReducer';
+import { Sudoku } from './Sudoku';
 
 const App = () => {
   return (
@@ -10,7 +12,9 @@ const App = () => {
         <Route exact path='/'>
             <div className="app-container">
               <Home/>
-              <Sudoku/>
+              <SudokuContext.Provider value={useReducer(sudokuReducer, getSudokuInitialState())}>
+                <Sudoku/>
+              </SudokuContext.Provider>
             </div>
         </Route>
       </Switch>
