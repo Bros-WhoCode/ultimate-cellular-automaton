@@ -1,3 +1,10 @@
+.home-container{
+    background: url('../assets/bg1.jpg');
+    background-size: cover;
+    width: 100vw;
+    padding: 40px;
+}
+
 .home-wrapper{
     display: flex;
 }

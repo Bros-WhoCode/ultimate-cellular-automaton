@@ -1,8 +1,25 @@
 .rule-list-container{
-    width: 20vw;
+    width: calc(20vw+50px);
     height: 100vh;
     padding: 10px;
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: teal;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 
 .rule-list-body {
     height: 80vh;
@@ -18,5 +35,5 @@
 }
 
 .rule-list-add:hover {
-    color: blue;
+    color: turquoise;
 }
