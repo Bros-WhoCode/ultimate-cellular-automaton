@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/ultimate-cellular-automaton/static/css/main.24cd39bf.chunk.css",
-    "main.js": "/ultimate-cellular-automaton/static/js/main.c5983efd.chunk.js",
-    "main.js.map": "/ultimate-cellular-automaton/static/js/main.c5983efd.chunk.js.map",
+    "main.css": "/ultimate-cellular-automaton/static/css/main.6f69ae13.chunk.css",
+    "main.js": "/ultimate-cellular-automaton/static/js/main.0778b0d3.chunk.js",
+    "main.js.map": "/ultimate-cellular-automaton/static/js/main.0778b0d3.chunk.js.map",
     "runtime-main.js": "/ultimate-cellular-automaton/static/js/runtime-main.bb4fa629.js",
     "runtime-main.js.map": "/ultimate-cellular-automaton/static/js/runtime-main.bb4fa629.js.map",
     "static/js/2.d336615a.chunk.js": "/ultimate-cellular-automaton/static/js/2.d336615a.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.9cf6f2ee.chunk.js": "/ultimate-cellular-automaton/static/js/3.9cf6f2ee.chunk.js",
     "static/js/3.9cf6f2ee.chunk.js.map": "/ultimate-cellular-automaton/static/js/3.9cf6f2ee.chunk.js.map",
     "index.html": "/ultimate-cellular-automaton/index.html",
-    "static/css/main.24cd39bf.chunk.css.map": "/ultimate-cellular-automaton/static/css/main.24cd39bf.chunk.css.map",
+    "static/css/main.6f69ae13.chunk.css.map": "/ultimate-cellular-automaton/static/css/main.6f69ae13.chunk.css.map",
     "static/js/2.d336615a.chunk.js.LICENSE.txt": "/ultimate-cellular-automaton/static/js/2.d336615a.chunk.js.LICENSE.txt",
     "static/media/Landing.css": "/ultimate-cellular-automaton/static/media/bg0.786000cd.jpg",
     "static/media/Home.css": "/ultimate-cellular-automaton/static/media/bg2.6d8f84d7.jpg",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.bb4fa629.js",
     "static/js/2.d336615a.chunk.js",
-    "static/css/main.24cd39bf.chunk.css",
-    "static/js/main.c5983efd.chunk.js"
+    "static/css/main.6f69ae13.chunk.css",
+    "static/js/main.0778b0d3.chunk.js"
   ]
 }
