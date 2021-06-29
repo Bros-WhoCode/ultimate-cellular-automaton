@@ -15,7 +15,11 @@ export const RuleList = () => {
     const [ruleList, dispatch] = useContext(ruleListContext);
 
     const addNewRule = () => {
-        dispatch({type : "NEW"});
+
+        if(ruleList.currentState === 0){
+            dispatch({type : "NEW"});
+        }
+
     }
 
     const stateChange = (left) => {
@@ -33,7 +37,7 @@ export const RuleList = () => {
                 )}
             </div>
             <div className="rule-list-controls">
-                <div onClick={addNewRule} className="rule-list-add"><i className="bi bi-plus-square"></i></div>
+                <div onClick={addNewRule} className={`rule-list-add ${(ruleList.currentState !== 0) ? "rule-disabled-button"  : "" }`}><i className="bi bi-plus-square"></i></div>
                 <Flipper state={StateNames[ruleList.currentState]} callback={stateChange}></Flipper>
             </div>
         </div>

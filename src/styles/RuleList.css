@@ -36,6 +36,11 @@
     font-size: 25px;
 }
 
+.rule-disabled-button {
+    color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+}
+
 .rule-list-add:hover {
-    color: turquoise;
+    color: aquamarine;
 }

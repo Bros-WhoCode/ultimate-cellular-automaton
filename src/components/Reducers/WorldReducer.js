@@ -95,11 +95,8 @@ class State {
 
             if(rows < this.prevMaxRows[this.prevMaxRows.length - 1] || cols < this.prevMaxCols[this.prevMaxCols.length - 1]){
 
-                if(rows > this.prevMaxRows[this.prevMaxRows.length - 1]){
+                if(rows > this.prevMaxRows[this.prevMaxRows.length - 1] || cols > this.prevMaxCols[this.prevMaxCols.length - 1]){
                     rows = this.prevMaxRows[this.prevMaxRows.length - 1];
-                }
-
-                if(cols > this.prevMaxCols[this.prevMaxCols.length - 1]){
                     cols = this.prevMaxCols[this.prevMaxCols.length - 1];
                 }
 
@@ -248,11 +245,15 @@ export const reducer = (state, action) => {
         StateDict[StateNames[state.currentState]](state);
 
     }else if(action.type === "CLEAR"){
-        
-        for(let i = 0; i < state.rows; i++){
-            for(let j = 0; j < state.cols; j++){
-                state.cells[i][j] = false;
+
+        if(state.currentState === 0){
+
+            for(let i = 0; i < state.rows; i++){
+                for(let j = 0; j < state.cols; j++){
+                    state.cells[i][j] = false;
+                }
             }
+        
         }
     
     }else if(action.type === "SIMULATING"){

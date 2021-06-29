@@ -64,7 +64,7 @@ const RelationCell = ({index, operation}) => {
 
         if(isOn){
             setStyles({
-                color : 'turquoise'
+                color : 'teal'
             });
         }else{
             setStyles({

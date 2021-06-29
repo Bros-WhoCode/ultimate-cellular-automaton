@@ -1,6 +1,6 @@
 .rule-container {
     padding: 5px;
-    background: rgba(255,255,255, .7);
+    background: rgba(255,255,255, .8);
     border-radius: 8px;
     font-size: 25px;
     margin: 10px 0px;
@@ -93,6 +93,7 @@
 
 .rule-input {
     font-weight: 900;
+    cursor: pointer;
 }
 
 
@@ -104,15 +105,17 @@ input[type="checkbox"] {
     height: 20px;
     width: 20px;
     background: turquoise;
+    cursor: pointer;
 }
 
 .rule-delete {
     margin: 0px 10px;
     margin-left: 15px;
+    cursor: pointer;
 }
 
 .rule-delete:hover {
-    color: turquoise;
+    color: rgb(40, 157, 140);
 }
 
 
@@ -122,5 +125,6 @@ input[type="checkbox"] {
     margin: 1px;
     border-radius: 0%;
     border : 1px solid black;
+    cursor: pointer;
 }
 

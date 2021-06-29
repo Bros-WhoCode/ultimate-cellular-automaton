@@ -4,6 +4,7 @@
     margin: 1px;
     border-radius: 0%;
     border : 1px solid black;
+    cursor: pointer;
 }
 
 .rule-grid-row {

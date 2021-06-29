@@ -1,5 +1,6 @@
 .cell-container {
     margin: 0.5px;
     border-radius: 0%;
+    cursor: pointer;
     /* border : 1px solid black; */
 }

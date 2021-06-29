@@ -11,6 +11,7 @@
 
 .sudokucell-container {
     background: whitesmoke;
+    cursor: pointer;
     margin: 1px;
     height: 48px;
     -webkit-user-select: none;
@@ -30,7 +31,9 @@
 
 .bi {
     font-size: 30px;
+    font-weight: 900;
     padding: 20px;
+    cursor: pointer;
 }
 
 .bi:hover {
