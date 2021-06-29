@@ -1,5 +1,8 @@
 import React, { createContext, useContext } from 'react';
+
+import { StateNames } from './Reducers/RuleListReducer';
 import { ruleListContext } from '../pages/Home';
+import Flipper from './Flipper';
 
 import Rule from './Rule';
 
@@ -15,6 +18,10 @@ export const RuleList = () => {
         dispatch({type : "NEW"});
     }
 
+    const stateChange = (left) => {
+        dispatch({type : "CHANGE_STATE", data : left});
+    }
+
     return (
         <div className="rule-list-container">
             <div className="rule-list-body">
@@ -27,6 +34,7 @@ export const RuleList = () => {
             </div>
             <div className="rule-list-controls">
                 <div onClick={addNewRule} className="rule-list-add"><i className="bi bi-plus-square"></i></div>
+                <Flipper state={StateNames[ruleList.currentState]} callback={stateChange}></Flipper>
             </div>
         </div>
     );

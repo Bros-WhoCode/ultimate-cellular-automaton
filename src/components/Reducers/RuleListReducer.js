@@ -1,18 +1,24 @@
+import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
 import { v4 } from 'uuid';
 
 class Rule {
 
-    constructor(id){
+    constructor(
+        id,
+        grid = [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        onlyCount = false,
+        valid = true,
+        result = 0,
+        relations = [0, 0, 0],
+        ){
 
         this.id = id
-        this.grid = [0, 0, 0,
-                     0, 0, 0,
-                     0, 0, 0]
+        this.grid = grid
         
-        this.onlyCount = false;
-        this.valid = true;
-        this.result = 0;
-        this.relations = [0, 0, 0];
+        this.onlyCount = onlyCount;
+        this.valid = valid;
+        this.result = result;
+        this.relations = relations;
         this.relationOperations = ['>', '<', '='];
 
     }
@@ -25,8 +31,10 @@ class RuleList {
 
         if(prevRuleList){
             this.rules = prevRuleList.rules
+            this.currentState = prevRuleList.currentState;
         }else{
             this.rules = [this.newDefaultRule()];
+            this.currentState = 0;
         }
 
     }
@@ -50,6 +58,22 @@ class RuleList {
     }
 
 }
+
+const Custom = (state) => {
+    state.rules = [state.newDefaultRule()];
+}
+
+const GameOfLife = (state) => {
+
+    state.rules = [new Rule(state.generateId(), [1, 0, 0, 0, 1, 0, 1, 0, 0], true, true, 1, [0, 0, 1]), 
+                   new Rule(state.generateId(), [1, 0, 1, 0, 1, 0, 1, 0, 0], true, true, 1, [0, 0, 1]),
+                   new Rule(state.generateId(), [1, 0, 1, 0, 0, 0, 1, 0, 0], true, true, 1, [0, 0, 1])];
+
+}
+
+const StateDict = {Custom, GameOfLife};
+export let StateNames = [];
+for(let k in StateDict) StateNames.push(k);
 
 export const InitialState = () => {
     return new RuleList(null);
@@ -107,6 +131,30 @@ export const reducer = (state, action) => {
 
         state.rules.push(state.newDefaultRule());
 
+    }else if(action.type === "CHANGE_STATE"){
+
+        let newIndex = 0;
+
+        if(action.data){
+
+            newIndex = state.currentState - 1;
+
+            if(newIndex < 0){
+                newIndex = StateNames.length - 1;
+            }
+
+        }else{
+
+            newIndex = state.currentState + 1;
+
+            if(newIndex >= StateNames.length){
+                newIndex = 0;
+            }
+
+        }
+
+        state.currentState = newIndex;
+        StateDict[StateNames[state.currentState]](state);
     }
 
     return new RuleList(state);

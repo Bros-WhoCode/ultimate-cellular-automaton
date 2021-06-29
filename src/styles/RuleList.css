@@ -27,6 +27,7 @@
 }
 
 .rule-list-controls {
+    display: flex;
     margin-top: 35px;
 }
 
