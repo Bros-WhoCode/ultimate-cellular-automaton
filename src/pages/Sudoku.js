@@ -8,31 +8,40 @@ export const Sudoku = () => {
     const [sudokuState, setSudokuState] = useState(getSudokuInitialState);
     const [isUnderGen, setIsUnderGen] = useState(false)
 
+    useEffect(() => {
+        if(isUnderGen){
+            if(haveErrors(sudokuState)){
+
+            }else{
+                solveSudoku()
+            }
+        }
+    }, [isUnderGen, sudokuState])
 
     const solveSudoku = () => {
-        setTimeout(() => {
-            
-        }, 100);
+        
         let [row, col, emptyCheck] = findEmptyLocation(sudokuState)
         console.log(row, col);
         if(!emptyCheck) {
             return true
         }
         for(let i = 1; i < 10; i++){
-            let newState = [...sudokuState].map(row => {
-                return row.slice()
-            })
-            newState[row][col].value = i
-            setSudokuState(newState)
 
-            if(solveSudoku()){ return true }
-
-            newState = [...sudokuState].map(row => {
-                return row.slice()
-            })
-            newState[row][col].value = 0
-            setSudokuState(newState)
-
+            if(isSafeCell(sudokuState, row, col, i)){
+                let newState = [...sudokuState].map(row => {
+                    return row.slice()
+                })
+                newState[row][col].value = i
+                setSudokuState(newState)
+    
+                if(solveSudoku()){ return true }
+    
+                newState = [...sudokuState].map(row => {
+                    return row.slice()
+                })
+                newState[row][col].value = 0
+                setSudokuState(newState)
+            }
         }
         return false
     }

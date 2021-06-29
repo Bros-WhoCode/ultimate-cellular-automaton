@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&display=swap');
+
+@font-face {
+    font-family: Valo;
+    src: local('../assets/ValorantFont.ttf');
+}
+
+.landing-container{
+    width: 100vw;
+    height: 100vh;
+    background: url('../assets/bg0.jpg');
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-nav{
+    height: 70px;
+    width: 100vw;
+    background: linear-gradient(to bottom, rgba(0,0,0,.7) 30%, transparent 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-btn{
+    width: 250px;
+    background: rgba(255,255,255,.5);
+    height: inherit;
+    margin: 0 3px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-transform: uppercase;
+    font-family: 'Montserrat',  sans-serif;
+    font-size: 20px;
+    box-shadow: 10px 10px 15px rgba(0,0,0,.7);
+    text-shadow: 2px 2px 3px rgba(0,0,0,.5);
+    cursor: pointer;
+}
+
+.landing-btn:hover{
+    transform: scale(102%);
+}
+
+.landing-left-btn{
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 40px 100%, 0% calc(100% - 40px));
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.landing-right-btn{
+    clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0% 100%);
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.landing-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+.landing-wrapper img {
+    height: 100px;
+}
+
+.landing-shadow-wrapper {
+    filter: drop-shadow(5px 5px 10px rgba(0,0,0,.7));
+}
+
+.landing-btn:hover .landing-shadow-wrapper{
+    filter: drop-shadow(15px 10px 20px rgba(0, 0, 0, .7));
+}
