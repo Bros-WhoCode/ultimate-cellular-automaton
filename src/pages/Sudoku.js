@@ -1,11 +1,14 @@
-import React, {useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { getSudokuInitialState } from '../components/Reducers/SudokuReducer';
-import { findEmptyLocation, isSafeCell} from '../components/SudokuUtils';
+import { findEmptyLocation, haveErrors, isSafeCell} from '../components/SudokuUtils';
 import '../styles/Sudoku.css'
 export const Sudoku = () => {
 
     // const [sudokuState, sudokuDis] = useContext(sudokuContext);
     const [sudokuState, setSudokuState] = useState(getSudokuInitialState);
+    const [isUnderGen, setIsUnderGen] = useState(false)
+
+
     const solveSudoku = () => {
         setTimeout(() => {
             
@@ -82,10 +85,13 @@ export const Sudoku = () => {
                 
             </div>
             <div className="sudoku-controls">
-                <div className="sudokubtn" >
+                <div className="sudokubtn" onClick={() => setIsUnderGen(!isUnderGen)}>
                     {
-                        // <i className="bi bi-pause"></i>
-                        <i className="bi bi-play"></i>
+                        isUnderGen ? (
+                            <i className="bi bi-pause"></i>
+                        ) : (
+                            <i className="bi bi-play"></i>
+                        )
                     }
                 </div>
                 <div className="sudokubtn">
