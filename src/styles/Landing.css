@@ -11,6 +11,8 @@
     background: url('../assets/bg0.jpg');
     display: flex;
     flex-direction: column;
+
+    scroll-snap-align: start;
 }
 
 .landing-nav{

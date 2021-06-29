@@ -38,6 +38,10 @@ export const isSafeBlock = (grid, rowNo, colNo, value) => {
     return true
 }
 
+export const isEmpty = (grid, r, c) => {
+    return grid[r][c].value === 0;
+}
+
 export const findEmptyLocation = (grid) => {
     for(let r = 0; r < 9; r++){
         for(let c = 0; c < 9; c++){

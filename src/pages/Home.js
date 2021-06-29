@@ -2,7 +2,6 @@ import React, {createContext, useReducer, useRef} from 'react';
 
 import { reducer as worldReducer, InitialState as InitialWorldState } from '../components/Reducers/WorldReducer';
 import { reducer as ruleListReducer, InitialState as InitialRuleListState } from '../components/Reducers/RuleListReducer';
-import { sudokuReducer, getSudokuInitialState } from '../components/Reducers/SudokuReducer';
 
 import { RuleList } from '../components/RuleList';
 import World from '../components/World';

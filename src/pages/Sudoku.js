@@ -1,26 +1,20 @@
 import React, {useEffect, useState } from 'react';
 import { getSudokuInitialState } from '../components/Reducers/SudokuReducer';
-import { findEmptyLocation, isSafeCell} from '../components/SudokuUtils';
+import { findEmptyLocation, isSafeCell } from '../components/SudokuUtils';
 
 import '../styles/Sudoku.css';
 
 export const Sudoku = () => {
 
-    const [sudokuState, setSudokuState] = useState(getSudokuInitialState);
+    const [sudokuState, setSudokuState] = useState(getSudokuInitialState());
     const [isUnderGen, setIsUnderGen] = useState(false);
 
-    
-    
     const solveSudoku = () => {
-
-        // setTimeout(() => {
-            
-        // }, 100);
 
         let [row, col, emptyCheck] = findEmptyLocation(sudokuState);
 
         if(!emptyCheck) {
-            return true
+            return true;
         }
 
         for(let i = 1; i < 10; i++){
@@ -29,19 +23,24 @@ export const Sudoku = () => {
                 let newState = [...sudokuState].map(row => {
                     return row.slice()
                 })
+
                 newState[row][col].value = i
                 setSudokuState(newState)
-    
-                if(solveSudoku()){ return true }
-    
+
+                if(solveSudoku()){ 
+                    return true;
+                }
+
                 newState = [...sudokuState].map(row => {
                     return row.slice()
                 })
                 newState[row][col].value = 0
                 setSudokuState(newState)
             }
+
         }
-        return false
+        return false;
+
     }
 
     const handleValue = (event, isIncre, row, col) => {
@@ -73,9 +72,8 @@ export const Sudoku = () => {
     const solve = () => {
 
         if(isUnderGen){
-            // clearInterval(isUnderGen);
             setIsUnderGen(false);
-            console.log(isUnderGen);
+            // console.log(isUnderGen);
         }else{
             setIsUnderGen(true);
             solveSudoku();

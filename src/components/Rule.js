@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import RuleGrid from './RuleGrid';
 import { ruleContext } from './RuleList';
+import { ruleListContext } from '../pages/Home';
 
 import '../styles/Rule.css';
-import { ruleListContext } from '../pages/Home';
 
 const OutputCell = () => {
 
@@ -64,7 +64,7 @@ const RelationCell = ({index, operation}) => {
 
         if(isOn){
             setStyles({
-                color : 'blue'
+                color : 'turquoise'
             });
         }else{
             setStyles({
