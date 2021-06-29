@@ -1,38 +1,45 @@
 import React, {useEffect, useState } from 'react';
 import { getSudokuInitialState } from '../components/Reducers/SudokuReducer';
-import { findEmptyLocation, haveErrors, isSafeCell} from '../components/SudokuUtils';
-import '../styles/Sudoku.css'
+import { findEmptyLocation, isSafeCell} from '../components/SudokuUtils';
+
+import '../styles/Sudoku.css';
+
 export const Sudoku = () => {
 
-    // const [sudokuState, sudokuDis] = useContext(sudokuContext);
     const [sudokuState, setSudokuState] = useState(getSudokuInitialState);
-    const [isUnderGen, setIsUnderGen] = useState(false)
+    const [isUnderGen, setIsUnderGen] = useState(false);
 
-
+    
+    
     const solveSudoku = () => {
-        setTimeout(() => {
+
+        // setTimeout(() => {
             
-        }, 100);
-        let [row, col, emptyCheck] = findEmptyLocation(sudokuState)
-        console.log(row, col);
+        // }, 100);
+
+        let [row, col, emptyCheck] = findEmptyLocation(sudokuState);
+
         if(!emptyCheck) {
             return true
         }
+
         for(let i = 1; i < 10; i++){
-            let newState = [...sudokuState].map(row => {
-                return row.slice()
-            })
-            newState[row][col].value = i
-            setSudokuState(newState)
 
-            if(solveSudoku()){ return true }
-
-            newState = [...sudokuState].map(row => {
-                return row.slice()
-            })
-            newState[row][col].value = 0
-            setSudokuState(newState)
-
+            if(isSafeCell(sudokuState, row, col, i)){
+                let newState = [...sudokuState].map(row => {
+                    return row.slice()
+                })
+                newState[row][col].value = i
+                setSudokuState(newState)
+    
+                if(solveSudoku()){ return true }
+    
+                newState = [...sudokuState].map(row => {
+                    return row.slice()
+                })
+                newState[row][col].value = 0
+                setSudokuState(newState)
+            }
         }
         return false
     }
@@ -41,27 +48,41 @@ export const Sudoku = () => {
         event.preventDefault()
         let currentVal = sudokuState[row][col].value
         let nextVal = currentVal
-
+        
         if(isIncre){
             nextVal =  currentVal >= 9 ? 0 : currentVal + 1;
         }else{
             nextVal = currentVal <= 0 ? 9 : currentVal - 1;
         }
-
+        
         let newState = [...sudokuState].map(rowCells => {
             return rowCells.slice()
         })
+        
         newState[row][col].value = nextVal
-
+        
         if(nextVal !== 0 && !isSafeCell(sudokuState, row, col, nextVal)){
             newState[row][col].isError = true
         }else{
             newState[row][col].isError = false
         }
-
+        
         setSudokuState(newState)
     }
     
+    const solve = () => {
+
+        if(isUnderGen){
+            // clearInterval(isUnderGen);
+            setIsUnderGen(false);
+            console.log(isUnderGen);
+        }else{
+            setIsUnderGen(true);
+            solveSudoku();
+        }
+
+    }
+
     return (
         <div className="sudoku-container">
             <div className="sudoku-wrapper">
@@ -85,7 +106,7 @@ export const Sudoku = () => {
                 
             </div>
             <div className="sudoku-controls">
-                <div className="sudokubtn" onClick={() => setIsUnderGen(!isUnderGen)}>
+                <div className="sudokubtn" onClick={solve}>
                     {
                         isUnderGen ? (
                             <i className="bi bi-pause"></i>
