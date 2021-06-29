@@ -1,5 +1,6 @@
 .rule-list-container{
-    width: calc(20vw+50px);
+    /* width: calc(20vw+50px); */
+    width: 30vw;
     height: 100vh;
     padding: 10px;
 }

@@ -33,7 +33,7 @@ class RuleList {
             this.rules = prevRuleList.rules
             this.currentState = prevRuleList.currentState;
         }else{
-            this.rules = [this.newDefaultRule()];
+            this.rules = [];
             this.currentState = 0;
         }
 
@@ -60,14 +60,16 @@ class RuleList {
 }
 
 const Custom = (state) => {
+    // state.rules
     state.rules = [state.newDefaultRule()];
 }
 
 const GameOfLife = (state) => {
 
-    state.rules = [new Rule(state.generateId(), [1, 0, 0, 0, 1, 0, 1, 0, 0], true, true, 1, [0, 0, 1]), 
-                   new Rule(state.generateId(), [1, 0, 1, 0, 1, 0, 1, 0, 0], true, true, 1, [0, 0, 1]),
-                   new Rule(state.generateId(), [1, 0, 1, 0, 0, 0, 1, 0, 0], true, true, 1, [0, 0, 1])];
+    state.rules = [];
+    state.rules.push(new Rule(state.generateId(), [1, 0, 0, 0, 1, 0, 1, 0, 0], true, true, 1, [0, 0, 1]));
+    state.rules.push(new Rule(state.generateId(), [1, 0, 1, 0, 1, 0, 1, 0, 0], true, true, 1, [0, 0, 1]));
+    state.rules.push(new Rule(state.generateId(), [1, 0, 1, 0, 0, 0, 1, 0, 0], true, true, 1, [0, 0, 1]));
 
 }
 
@@ -76,7 +78,9 @@ export let StateNames = [];
 for(let k in StateDict) StateNames.push(k);
 
 export const InitialState = () => {
-    return new RuleList(null);
+    let rl = new RuleList(null);
+    Custom(rl);
+    return rl;
 }
 
 export const reducer = (state, action) => {
