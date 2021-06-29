@@ -1,3 +1,5 @@
 # The World of Automata
 
-Simulate a world of tiny tiny cells, where you define the rules.
+Simulate a world of tiny tiny cells, where you get to define the rules.  
+Your rules may be simple, complex or something god-like, no restrictions for your imagination.  
+Start your symphony and let the cells dance to it, make sure it is good.
