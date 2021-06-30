@@ -30,8 +30,11 @@ Click on the rocket. Yaay !!!!
 
 ### World Grid
 
-The Initial State can be set
+The Initial State of your world can be set in the 2D grid of cells.  
 
+![Alive or Dead](/images/alive-or-dead.png)
+
+A Cell may be dead or alive, the states can be toggled by clicking a particular cell. The grid is fully dynamic, So you can expand your horizons into the unknown.
 
 ### Rule / RuleList
 ![Rule Details](/images/rule-details.png)
@@ -42,6 +45,6 @@ There is also a way to match the number of neighbors alive, instead of their pos
 
 ![Count Mode](/images/count-mode.png)
 
-After the Count Mode is enabled, only the number of alive neighbors are going to be compared not their realtive position with the current cell. You can chose between the following relations `< | > | <= | >= | =` to compare each cell in the with the rule.
+After the Count Mode is enabled, only the number of alive neighbors are going to be compared not their realtive position with the current cell. You can chose between the following relations `< | > | <= | >= | =` by toggling the appropriate symbol or symbols to compare each cell in the world with the rule.
 
 Priority is given to the top most rule if at all there are any clash with two or more rules.
