@@ -48,3 +48,6 @@ There is also a way to match the number of neighbors alive, instead of their pos
 After the Count Mode is enabled, only the number of alive neighbors are going to be compared not their realtive position with the current cell. You can chose between the following relations `< | > | <= | >= | =` by toggling the appropriate symbol or symbols to compare each cell in the world with the rule.
 
 Priority is given to the top most rule if at all there are any clash with two or more rules.
+
+### Enjoy Exploring The World that you Created. 
+> Well Finally you are the god, Or is it ?
