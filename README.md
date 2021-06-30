@@ -28,9 +28,20 @@ Click on the rocket. Yaay !!!!
 
 ## How To
 
-### Rule
+### World Grid
+
+The Initial State can be set
+
+
+### Rule / RuleList
 ![Rule Details](/images/rule-details.png)
 
 The State of the current cell and their neighbors are selected in the 9x9 Grid, by default both the position and the state of the neighbors are matched against each cell in the world grid and then replaced by the state for the next generation.  
 
-There is also a way to match the number of neighbors alive, instead of their positions with some relational operators to enhance the use of the rule.
+There is also a way to match the number of neighbors alive, instead of their positions with some relational operators to enhance the use of the rule.  
+
+![Count Mode](/images/count-mode.png)
+
+After the Count Mode is enabled, only the number of alive neighbors are going to be compared not their realtive position with the current cell. You can chose between the following relations `< | > | <= | >= | =` to compare each cell in the with the rule.
+
+Priority is given to the top most rule if at all there are any clash with two or more rules.
