@@ -28,7 +28,7 @@ export const World = () => {
             clearInterval(simulation);
             setSimulation(null);
         }else{
-            setSimulation(setInterval(simulate, 100));
+            setSimulation(setInterval(simulate, 50));
         }
     }
 
