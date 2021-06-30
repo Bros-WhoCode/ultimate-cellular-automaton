@@ -28,4 +28,9 @@ Click on the rocket. Yaay !!!!
 
 ## How To
 
+### Rule
+![Rule Details](/images/rule-details.png)
 
+The State of the current cell and their neighbors are selected in the 9x9 Grid, by default both the position and the state of the neighbors are matched against each cell in the world grid and then replaced by the state for the next generation.  
+
+There is also a way to match the number of neighbors alive, instead of their positions with some relational operators to enhance the use of the rule.
