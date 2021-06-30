@@ -9,6 +9,8 @@ Rules for creating rules is simple, Explore the world that you created.
 > Even Simple Rules Can Bring Out Complex Behaviours  
 > &ndash; No one
 
+![Game of Life Simulation](/images/game-of-life-sim.gif)
+
 ## Cellular Automaton
 It is a collection of colored cells which evolve each time from the previous state defined by a set of predefined rules. These rules are defined based up the neighboring cells in the grid. 
 
