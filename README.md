@@ -55,6 +55,6 @@ Priority is given to the top most rule if at all there are any clash with two or
 
 ## Sudoku Solver
 
-This intriguing part of the world would set an example how efficient and fundamental Automata theory is applied for. It has a blank state of 9x9 grid. One can increment the value of block by one on left-click and decrement the value on right-click. (No worries, you wont be startled by the context menu :D). And then all you to press is the PLAY button, to fetch your solution. 
+This intriguing part of the world would set an example how efficient and fundamental Automata theory is applied for. It has a blank state of 9x9 grid. One can increment the value of block by one on left-click and decrement the value on right-click. (No worries, you wont be startled by the context menu :smile:). And then all you to press is the PLAY button, to fetch your solution. 
 
 > Glad to show you our work ! 
