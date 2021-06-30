@@ -49,5 +49,4 @@ After the Count Mode is enabled, only the number of alive neighbors are going to
 
 Priority is given to the top most rule if at all there are any clash with two or more rules.
 
-### Enjoy Exploring The World that you Created. 
 > Well Finally you are the god, Or is it ?
